@@ -2,5 +2,28 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-*.bin
-/.vs/KhetSaathi/FileContentIndex/cd4070e6-651a-464c-86e5-010ba062a120.vsidx
+# Ignore Visual Studio temporary files, build results, and cache
+.vs/
+.vscode/
+
+# Build artifacts
+[Bb]in/
+[Oo]bj/
+TestResults/
+artifacts/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Others
+*.log
+*.dbmdl
+*.bak
