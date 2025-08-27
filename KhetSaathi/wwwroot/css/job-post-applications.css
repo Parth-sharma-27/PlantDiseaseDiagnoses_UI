@@ -1,0 +1,51 @@
+﻿.job-card {
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+    .job-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+.job-title {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: #2c3e50;
+}
+
+.applicant-badge {
+    background: linear-gradient(to right, #667eea, #764ba2);
+    color: #fff;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 2rem;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.arrow-btn {
+    border-radius: 50px;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    color: white;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 1rem;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+    .arrow-btn:hover {
+        background: linear-gradient(to right, #5a67d8, #6b46c1);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    .arrow-btn i {
+        font-size: 1rem;
+    }

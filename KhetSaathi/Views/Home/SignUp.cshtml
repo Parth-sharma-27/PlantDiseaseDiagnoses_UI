@@ -1,0 +1,112 @@
+﻿@{
+    Layout = "_BlankLayout";
+}
+
+<section class="auth-form-section">
+    <div class="form-container">
+        <h2>Sign Up</h2>
+        <form method="post" asp-controller="Account" asp-action="Signup">
+            <div class="form-group">
+                <label>Full Name:</label>
+                <input type="text" name="Name" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" name="Email" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" name="Password" class="form-control" required />
+            </div>
+
+            <!-- Country Dropdown (Fixed India) -->
+            <div class="form-group">
+                <label>Country:</label>
+                <select id="country" name="Country" class="form-control" required>
+                    <option value="India" selected>India</option>
+                </select>
+            </div>
+
+            <!-- State Dropdown -->
+            <div class="form-group">
+                <label>State:</label>
+                <select id="state" name="State" class="form-control" required></select>
+            </div>
+
+            <!-- City Dropdown -->
+            <div class="form-group">
+                <label>City:</label>
+                <select id="city" name="City" class="form-control" required></select>
+            </div>
+
+            <!-- Village Dropdown -->
+            <div class="form-group">
+                <label>Village:</label>
+                <select id="village" name="Village" class="form-control" required></select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            loadStates();
+
+            $('#state').change(function () {
+                var state = $(this).val();
+                if (state) loadCities(state);
+                else {
+                    $('#city').html('<option value="">--Select City--</option>');
+                    $('#village').html('<option value="">--Select Village--</option>');
+                }
+            });
+
+            $('#city').change(function () {
+                var city = $(this).val();
+                var state = $('#state').val();
+                if (city && state) loadVillages(state, city);
+                else $('#village').html('<option value="">--Select Village--</option>');
+            });
+
+            function loadStates() {
+               $.getJSON('/Home/states', { country: 'India' }, function(data) {
+                    let options = '<option value="">--Select State--</option>';
+                    $.each(data, function (i, state) {
+                        options += `<option value="${state}">${state}</option>`;
+                    });
+                    $('#state').html(options);
+                    $('#city').html('<option value="">--Select City--</option>');
+                    $('#village').html('<option value="">--Select Village--</option>');
+                });
+            }
+
+            function loadCities(state) {
+                $.getJSON('/Home/cities', { state: state }, function (data) {
+                    let options = '<option value="">--Select City--</option>';
+                    $.each(data, function (i, city) {
+                        options += `<option value="${city}">${city}</option>`;
+                    });
+                    $('#city').html(options);
+                    $('#village').html('<option value="">--Select Village--</option>');
+                });
+            }
+
+            function loadVillages(state, city) {
+                $.getJSON('/Home/villages', { state: state, city: city }, function (data) {
+                    let options = '<option value="">--Select Village--</option>';
+                    $.each(data, function (i, village) {
+                        options += `<option value="${village}">${village}</option>`;
+                    });
+                    $('#village').html(options);
+                });
+            }
+        });
+    </script>
+}
