@@ -586,8 +586,8 @@
                     <div class="voice-qa-header-content">
                         <h2>Voice Q&A Assistant</h2>
                         <p>Ask questions in your local language and get instant answers</p>
-                        
-                        <div class="language-selector">
+
+                    <div class="language-selector" id="languageSelect">
                             <button class="language-btn active">Hindi</button>
                             <button class="language-btn">Marathi</button>
                             <button class="language-btn">Tamil</button>
@@ -627,160 +627,117 @@
  
     
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Language selection
-            const languageBtns = document.querySelectorAll('.language-btn');
-            languageBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    languageBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-            
-            // Voice input functionality
-            const voiceInputBtn = document.getElementById('voiceInputBtn');
-            const voiceInputText = document.getElementById('voiceInputText');
-            const conversationContainer = document.getElementById('conversationContainer');
-            let isListening = false;
-            
-            // Sample questions and answers for demonstration
-            const sampleQA = [
-                {
-                    question: "What is the weather today?",
-                    answer: "Today's weather is sunny with a temperature of 32°C. There is no chance of rain, so it's a good day for harvesting or irrigation activities."
-                },
-                {
-                    question: "How to treat yellowing leaves?",
-                    answer: "Yellowing leaves can be caused by nitrogen deficiency, overwatering, or pest infestation. I recommend applying nitrogen-rich fertilizer and checking for pests. If the problem persists, consult with an agricultural expert."
-                },
-                {
-                    question: "What is the price of wheat?",
-                    answer: "The current market price of wheat is ₹2,150 per quintal in the local market. Prices are expected to rise by 5% in the next week due to increased demand."
-                },
-                {
-                    question: "When should I harvest my crop?",
-                    answer: "Based on your crop's growth stage and current weather conditions, the ideal time for harvesting would be in the next 7-10 days. Make sure to check the moisture content of the grains before harvesting."
-                }
-            ];
-            
-            voiceInputBtn.addEventListener('click', function() {
-                if (!isListening) {
-                    startListening();
-                } else {
-                    stopListening();
-                }
-            });
-            
-            function startListening() {
-                isListening = true;
-                voiceInputBtn.classList.add('listening');
-                voiceInputBtn.innerHTML = '<i class="fas fa-stop"></i>';
-                voiceInputText.textContent = 'Listening... Speak now';
-                
-                // Simulate voice recognition after 2 seconds
-                setTimeout(() => {
-                    const randomIndex = Math.floor(Math.random() * sampleQA.length);
-                    const question = sampleQA[randomIndex].question;
-                    
-                    stopListening();
-                    displayQuestion(question);
-                    
-                    // Simulate processing and show answer after 1 second
-                    setTimeout(() => {
-                        displayAnswer(sampleQA[randomIndex].answer);
-                    }, 1000);
-                }, 2000);
+       document.addEventListener('DOMContentLoaded', function () {
+           debugger
+        const voiceInputBtn = document.getElementById('voiceInputBtn');
+        const voiceInputText = document.getElementById('voiceInputText');
+        const conversationContainer = document.getElementById('conversationContainer');
+        const languageSelect = document.getElementById('languageSelect');
+
+        let isListening = false;
+
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        voiceInputBtn.addEventListener('click', function () {
+            if (!isListening) {
+                startListening();
+            } else {
+                stopListening();
             }
-            
-            function stopListening() {
-                isListening = false;
-                voiceInputBtn.classList.remove('listening');
-                voiceInputBtn.innerHTML = '<i class="fas fa-microphone"></i>';
-                voiceInputText.textContent = 'Tap the microphone and ask your question';
-            }
-            
-            function displayQuestion(question) {
-                const conversationItem = document.createElement('div');
-                conversationItem.className = 'conversation-item';
-                
-                const now = new Date();
-                const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                
-                conversationItem.innerHTML = `
-                    <div class="question-bubble">
-                        <div class="meta">
-                            <span>You</span>
-                            <span>${timeString}</span>
-                        </div>
-                        <p>${question}</p>
-                    </div>
-                `;
-                
-                conversationContainer.appendChild(conversationItem);
-                conversationContainer.scrollTop = conversationContainer.scrollHeight;
-            }
-            
-            function displayAnswer(answer) {
-                const conversationItem = document.createElement('div');
-                conversationItem.className = 'conversation-item';
-                
-                const now = new Date();
-                const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                
-                conversationItem.innerHTML = `
-                    <div class="answer-bubble">
-                        <div class="meta">
-                            <span>Khetsaathi</span>
-                            <i class="fas fa-volume-up" id="playAnswerBtn"></i>
-                        </div>
-                        <p>${answer}</p>
-                    </div>
-                `;
-                
-                conversationContainer.appendChild(conversationItem);
-                conversationContainer.scrollTop = conversationContainer.scrollHeight;
-                
-                // Add event listener to the play button
-                const playAnswerBtn = conversationItem.querySelector('#playAnswerBtn');
-                playAnswerBtn.addEventListener('click', function() {
-                    // Simulate playing the answer
-                    this.classList.remove('fa-volume-up');
-                    this.classList.add('fa-pause');
-                    
-                    setTimeout(() => {
-                        this.classList.remove('fa-pause');
-                        this.classList.add('fa-volume-up');
-                    }, 3000);
-                });
-            }
-            
-            // Example questions click functionality
-            const exampleQuestions = document.querySelectorAll('.example-question');
-            exampleQuestions.forEach(question => {
-                question.addEventListener('click', function() {
-                    const questionText = this.textContent;
-                    
-                    // Find the matching answer
-                    const qa = sampleQA.find(item => item.question === questionText);
-                    if (qa) {
-                        displayQuestion(questionText);
-                        
-                        setTimeout(() => {
-                            displayAnswer(qa.answer);
-                        }, 1000);
-                    }
-                });
-            });
-            
-            // Header scroll effect
-            window.addEventListener('scroll', function() {
-                const header = document.querySelector('header');
-                
-                if (window.scrollY > 100) {
-                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-                } else {
-                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.05)';
-                }
-            });
         });
+
+        function startListening() {
+                 debugger
+            isListening = true;
+            voiceInputBtn.classList.add('listening');
+            voiceInputBtn.innerHTML = '<i class="fas fa-stop"></i>';
+            voiceInputText.textContent = 'Listening... Speak now';
+
+            recognition.lang = languageSelect.value;  // Set recognition language dynamically here
+            recognition.start();
+        }
+
+        function stopListening() {
+            debugger
+            isListening = false;
+            voiceInputBtn.classList.remove('listening');
+            voiceInputBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+            voiceInputText.textContent = 'Tap the microphone and ask your question';
+
+            recognition.stop();
+        }
+
+
+        recognition.onresult = function (event) {
+                 debugger
+            const question = event.results[0][0].transcript;
+            displayQuestion(question);
+
+            // Send to your backend (CustomerController/LocalVoiceQA)
+            fetch('/Customer/LocalVoiceQA', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ question: question })
+            })
+            .then(res => res.json())
+            .then(data => {
+                displayAnswer(data.answer || "Sorry, no answer found.");
+            })
+            .catch(() => {
+                displayAnswer("Something went wrong. Please try again.");
+            });
+
+            stopListening();
+        };
+
+        recognition.onerror = function (event) {
+            stopListening();
+            displayAnswer("Could not understand. Please try again.");
+        };
+
+        function displayQuestion(question) {
+            const conversationItem = document.createElement('div');
+            conversationItem.className = 'conversation-item';
+            const timeString = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            conversationItem.innerHTML = `
+                <div class="question-bubble">
+                    <div class="meta"><span>You</span><span>${timeString}</span></div>
+                    <p>${question}</p>
+                </div>
+            `;
+            conversationContainer.appendChild(conversationItem);
+            conversationContainer.scrollTop = conversationContainer.scrollHeight;
+        }
+
+        function displayAnswer(answer) {
+            const conversationItem = document.createElement('div');
+            conversationItem.className = 'conversation-item';
+            const timeString = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            conversationItem.innerHTML = `
+                <div class="answer-bubble">
+                    <div class="meta">
+                        <span>Khetsaathi</span>
+                        <i class="fas fa-volume-up playAnswerBtn"></i>
+                    </div>
+                    <p>${answer}</p>
+                </div>
+            `;
+            conversationContainer.appendChild(conversationItem);
+            conversationContainer.scrollTop = conversationContainer.scrollHeight;
+
+            // Play answer text on click
+            const playAnswerBtn = conversationItem.querySelector('.playAnswerBtn');
+            playAnswerBtn.addEventListener('click', function () {
+                const synth = window.speechSynthesis;
+                const utterance = new SpeechSynthesisUtterance(answer);
+                utterance.lang = languageSelect.value;  // Match speech synthesis language to selected language
+                synth.speak(utterance);
+            });
+        }
+    });
+
     </script>
