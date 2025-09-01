@@ -841,6 +841,41 @@
         }
 
         }
+
+
+
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 120px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            border-radius: 6px;
+            z-index: 1000;
+        }
+
+            .dropdown-content a {
+                display: block;
+                padding: 8px 12px;
+                text-decoration: none;
+                color: #333;
+            }
+
+                .dropdown-content a:hover {
+                    background: #f0f0f0;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+
     </style>
 </head>
 <body>
@@ -864,10 +899,29 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
+@*             <div class="cta-buttons">
+                <a href="#" class="btn btn-outline">Login</a>
+                <a href="#" class="btn btn-primary">Sign Up</a>
+            </div> *@
+
+
             <div class="cta-buttons">
                 <a href="#" class="btn btn-outline">Login</a>
                 <a href="#" class="btn btn-primary">Sign Up</a>
+
+                <div class="dropdown">
+                    <a href="#" class="btn btn-secondary">Lang ▼</a>
+                    <div class="dropdown-content">
+                        <a href="#">English</a>
+                        <a href="#">Hindi</a>
+                        <a href="#">Marathi</a>
+                        <a href="#">Gujarati</a>
+                        <a href="#">Punjabi</a>
+                    </div>
+                </div>
             </div>
+
+
             <div class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
             </div>
