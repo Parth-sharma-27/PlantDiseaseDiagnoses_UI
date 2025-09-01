@@ -9,6 +9,8 @@
 # Build artifacts
 [Bb]in/
 [Oo]bj/
+[Dd]ebug/
+[Rr]elease/
 TestResults/
 artifacts/
 
