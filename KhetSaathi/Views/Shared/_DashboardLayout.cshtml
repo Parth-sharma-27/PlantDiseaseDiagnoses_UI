@@ -2,7 +2,7 @@
 
 @{
     string role = User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value;
-    var pageTitle = ViewBag?.Title ?? "HireNexus";
+    // var pageTitle = ViewBag?.Title ?? "HireNexus";
     
    
 
@@ -21,8 +21,8 @@
     <meta charset="utf-8" />
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-
-    <title>@pageTitle</title>
+@* 
+    <title>@pageTitle</title> *@
 
     <meta name="description" content="" />
 
@@ -99,11 +99,11 @@
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
                     <a asp-action="Index" asp-controller="Home" asp-area="" class="app-brand-link">
-                        <span class="app-brand-logo demo mt-2">
+                   @*      <span class="app-brand-logo demo mt-2">
                             <img src="~/static/normalLogo.png" alt="ATS Logo" class="img-fluid img-thumbnail">
-                        </span>
+                        </span> *@
                         <span class="app-brand-text demo menu-text fw-bold text-white me-0">
-                            HireNexus
+                            Khetsaathi
                         </span>
                     </a>
 
@@ -114,8 +114,104 @@
                 </div>
 
                 <div class="menu-inner-shadow"></div>
-                <!-- Render Menu -->
-                @await Component.InvokeAsync("Menu")
+                <ul class="menu-inner py-1">
+                    <!-- Dashboard -->
+                    <li class="menu-item">
+                        <a href="/Customer/Dashboard" class="menu-link">
+                            <i class="menu-icon ti ti-home"></i>
+                            <div>Dashboard</div>
+                        </a>
+                    </li>
+
+                    <!-- Ask by Voice -->
+                    <li class="menu-item">
+                        <a href="/Customer/LocalVoiceQA" class="menu-link">
+                            <i class="menu-icon ti ti-microphone"></i>
+                            <div>Ask by Voice</div>
+                        </a>
+                    </li>
+
+                    <!-- Diagnose by Photo -->
+                    <li class="menu-item">
+                        <a href="/Customer/LeafDiseaseDetection" class="menu-link">
+                            <i class="menu-icon ti ti-camera"></i>
+                            <div>Photo Diagnosis</div>
+                        </a>
+                    </li>
+
+                    <!-- Remedy & Dosage -->
+                    <li class="menu-item">
+                        <a href="/Customer/TreatmentGuide" class="menu-link">
+                            <i class="menu-icon ti ti-test-pipe"></i>
+                            <div>Remedy & Dosage</div>
+                        </a>
+                    </li>
+
+                    <!-- Fertilizer & Water -->
+                    <li class="menu-item">
+                        <a href="/Customer/FertilizerIrrigationAdvisor" class="menu-link">
+                            <i class="menu-icon ti ti-plant-2"></i>
+                            <div>Fertilizer Plan</div>
+                        </a>
+                    </li>
+
+                    <!-- Crop Recommendation -->
+                    <li class="menu-item">
+                        <a href="/Customer/CropRecommendation" class="menu-link">
+                            <i class="menu-icon ti ti-compass"></i>
+                            <div>Crop Planner</div>
+                        </a>
+                    </li>
+
+                    <!-- Mandi Rates -->
+                    <li class="menu-item">
+                        <a href="/Customer/MandiRatesAndPrediction" class="menu-link">
+                            <i class="menu-icon ti ti-currency-rupee"></i>
+                            <div>Mandi Rates</div>
+                        </a>
+                    </li>
+
+                    <!-- Weather Alerts -->
+                    <li class="menu-item">
+                        <a href="/Customer/WeatherAlerts" class="menu-link">
+                            <i class="menu-icon ti ti-cloud-rain"></i>
+                            <div>Weather Alerts</div>
+                        </a>
+                    </li>
+
+                    <!-- Field Diary -->
+                    <li class="menu-item">
+                        <a href="/Customer/FieldDiary" class="menu-link">
+                            <i class="menu-icon ti ti-notebook"></i>
+                            <div>Field Diary</div>
+                        </a>
+                    </li>
+
+                    <!-- Offline Mode -->
+                    <li class="menu-item">
+                        <a href="/Customer/OfflineLowDataUI" class="menu-link">
+                            <i class="menu-icon ti ti-wifi-off"></i>
+                            <div>Offline Mode</div>
+                        </a>
+                    </li>
+
+                    <!-- Solve My Problem -->
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <i class="menu-icon ti ti-brain"></i>
+                            <div>Solve My Problem</div>
+                        </a>
+                    </li>
+
+                    <!-- Multi-Language -->
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <i class="menu-icon ti ti-language"></i>
+                            <div>Language Settings</div>
+                        </a>
+                    </li>
+                </ul>
+
     
             </aside>
             <!-- / Menu -->
@@ -209,7 +305,7 @@
                                    href="javascript:void(0);"
                                    data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="@Url.Content(@Context.Session.GetString("UserAvatar"))" class="rounded-circle" onerror="avatarLoadFail(this)" />
+                                       @*  <img src="@Url.Content(@Context.Session.GetString("UserAvatar"))" class="rounded-circle" onerror="avatarLoadFail(this)" /> *@
                                     
                                         <span class="avatar-initial rounded-circle bg-label-primary d-none"></span>
                                     </div>
@@ -220,7 +316,7 @@
                                             <div class="d-flex align-items-center">
                                                 <div class="flex-shrink-0 me-2">
                                                     <div class="avatar avatar-online">
-                                                        <img src="@Url.Content(@Context.Session.GetString("UserAvatar"))" class="rounded-circle" onerror="avatarLoadFail(this)" />
+                                                  @*       <img src="@Url.Content(@Context.Session.GetString("UserAvatar"))" class="rounded-circle" onerror="avatarLoadFail(this)" /> *@
                                                    
                                                         <span class="avatar-initial rounded-circle bg-label-primary d-none"></span>
                                                     </div>
@@ -300,7 +396,7 @@
                     </div>
                     <!-- / Content -->
                     <!-- Footer -->
-                    <footer class="content-footer footer bg-footer-theme">
+              @*       <footer class="content-footer footer bg-footer-theme">
                         <div class="container-xxl">
                             <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
                                 <div class="text-body">
@@ -308,7 +404,7 @@
                                 </div>
                             </div>
                         </div>
-                    </footer>
+                    </footer> *@
                     <!-- / Footer -->
 
                     <div class="content-backdrop fade"></div>

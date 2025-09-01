@@ -1,0 +1,1452 @@
+﻿@{
+    Layout = "_DashboardLayout";
+}
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #4CAF50;
+            --accent-color: #FF9800;
+            --light-color: #F8F9FA;
+            --dark-color: #212529;
+            --text-color: #495057;
+            --white: #FFFFFF;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s ease;
+            --gradient: linear-gradient(135deg, #2E7D32, #4CAF50);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+        }
+        
+        .logo-container i {
+            font-size: 28px;
+            color: var(--accent-color);
+        }
+        
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .back-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Advisor Section */
+        .advisor-section {
+            padding: 120px 0 80px;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -10px;
+            left: 20%;
+            border-radius: 2px;
+        }
+        
+        .section-header h2 span {
+            color: var(--primary-color);
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 25px auto 0;
+            color: var(--text-color);
+        }
+        
+        /* Tabs */
+        .tabs-container {
+            max-width: 900px;
+            margin: 0 auto 40px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .tab {
+            padding: 15px 30px;
+            font-weight: 600;
+            color: var(--text-color);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .tab:hover {
+            color: var(--primary-color);
+        }
+        
+        .tab.active {
+            color: var(--primary-color);
+        }
+        
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient);
+            bottom: -2px;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Form Styles */
+        .advisor-form {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        .form-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: var(--dark-color);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            transition: var(--transition);
+            background: var(--light-color);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: var(--white);
+            box-shadow: 0 0 0 5px rgba(46, 125, 50, 0.1);
+        }
+        
+        .calculate-btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 30px auto 0;
+            padding: 15px;
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .calculate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+        }
+        
+        /* Results Container */
+        .results-container {
+            display: none;
+        }
+        
+        .result-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .result-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            background: rgba(46, 125, 50, 0.1);
+            color: var(--primary-color);
+        }
+        
+        .result-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: var(--dark-color);
+        }
+        
+        .recommendation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .recommendation-item {
+            background: var(--light-color);
+            border-radius: 15px;
+            padding: 20px;
+            transition: var(--transition);
+        }
+        
+        .recommendation-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .recommendation-item h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .recommendation-item h4 i {
+            color: var(--primary-color);
+        }
+        
+        .recommendation-item p {
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+        
+        .recommendation-item .value {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .schedule-container {
+            margin-top: 30px;
+        }
+        
+        .schedule-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .schedule-title i {
+            color: var(--primary-color);
+        }
+        
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .schedule-table th {
+            background: var(--gradient);
+            color: var(--white);
+            text-align: left;
+            padding: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .schedule-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .schedule-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .schedule-table tr:nth-child(even) {
+            background: rgba(0, 0, 0, 0.01);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .action-btn {
+            padding: 12px 25px;
+            background: var(--white);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .action-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.3);
+        }
+        
+        .tips-container {
+            background: rgba(255, 152, 0, 0.1);
+            border-left: 5px solid var(--accent-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .tips-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tips-title i {
+            color: var(--accent-color);
+        }
+        
+        .tips-list {
+            list-style: none;
+        }
+        
+        .tips-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .tips-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent-color);
+        }
+        
+        /* Weather Widget */
+        .weather-widget {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .weather-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .weather-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .weather-title i {
+            color: var(--primary-color);
+        }
+        
+        .weather-refresh {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .weather-refresh:hover {
+            transform: rotate(180deg);
+        }
+        
+        .weather-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .weather-icon {
+            font-size: 48px;
+            color: var(--accent-color);
+        }
+        
+        .weather-details {
+            flex: 1;
+        }
+        
+        .weather-temp {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+        
+        .weather-desc {
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+        
+        .weather-data {
+            display: flex;
+            gap: 15px;
+            font-size: 14px;
+            color: var(--text-color);
+        }
+        
+        .weather-data-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 70px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 90%, rgba(76, 175, 80, 0.2) 0%, transparent 60%);
+            z-index: 1;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .footer-logo .logo-container {
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-logo p {
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        
+        .footer-links h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+            color: var(--white);
+        }
+        
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .footer-links a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            bottom: -2px;
+            left: 0;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+        
+        .footer-links a:hover::before {
+            width: 100%;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 16px;
+            opacity: 0.7;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Responsive Styles */
+        @@media (max-width: 992px) {
+            .recommendation-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @@media (max-width: 768px) {
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .section-header h2 {
+                font-size: 30px;
+            }
+            
+            .advisor-form {
+                padding: 20px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @@media (max-width: 576px) {
+            .section-header h2 {
+                font-size: 26px;
+            }
+            
+            .advisor-form {
+                padding: 20px;
+            }
+            
+            .recommendation-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .schedule-table {
+                font-size: 14px;
+            }
+            
+            .schedule-table th,
+            .schedule-table td {
+                padding: 10px;
+            }
+            
+            .weather-info {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+
+@*     <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <div class="logo-container">
+                        <i class="fas fa-seedling"></i>
+                        <span>Khetsaathi</span>
+                    </div>
+                </a>
+            </div>
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </header> *@
+    
+    <!-- Fertilizer & Irrigation Advisor Section -->
+    <section class="advisor-section pt-2">
+        <div class="container">
+            <div class="section-header">
+                <h2>Fertilizer & <span>Irrigation Advisor</span></h2>
+                <p>Get personalized fertilizer and irrigation recommendations based on your crop, soil type, and local conditions</p>
+            </div>
+            
+            <div class="tabs-container">
+                <div class="tabs">
+                    <div class="tab active" data-tab="fertilizer-advisor">Fertilizer Advisor</div>
+                    <div class="tab" data-tab="irrigation-advisor">Irrigation Advisor</div>
+                </div>
+                
+                <!-- Weather Widget -->
+                <div class="weather-widget">
+                    <div class="weather-header">
+                        <h3 class="weather-title">
+                            <i class="fas fa-cloud-sun"></i> Current Weather
+                        </h3>
+                        <button class="weather-refresh" id="weatherRefresh">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="weather-info">
+                        <div class="weather-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="weather-details">
+                            <div class="weather-temp">32°C</div>
+                            <div class="weather-desc">Sunny</div>
+                            <div class="weather-data">
+                                <div class="weather-data-item">
+                                    <i class="fas fa-tint"></i> 45%
+                                </div>
+                                <div class="weather-data-item">
+                                    <i class="fas fa-wind"></i> 12 km/h
+                                </div>
+                                <div class="weather-data-item">
+                                    <i class="fas fa-eye"></i> 10 km
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fertilizer Advisor Tab -->
+                <div class="tab-content active" id="fertilizer-advisor">
+                    <div class="advisor-form">
+                        <h3 class="form-title">Fertilizer Recommendation</h3>
+                        
+                        <form id="fertilizerForm">
+                            <div class="form-group">
+                                <label for="crop">Crop Type</label>
+                                <select id="crop" required>
+                                    <option value="">Select Crop</option>
+                                    <option value="wheat">Wheat</option>
+                                    <option value="rice">Rice</option>
+                                    <option value="cotton">Cotton</option>
+                                    <option value="sugarcane">Sugarcane</option>
+                                    <option value="maize">Maize</option>
+                                    <option value="pulses">Pulses</option>
+                                    <option value="vegetables">Vegetables</option>
+                                    <option value="fruits">Fruits</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="soil">Soil Type</label>
+                                <select id="soil" required>
+                                    <option value="">Select Soil Type</option>
+                                    <option value="sandy">Sandy</option>
+                                    <option value="loamy">Loamy</option>
+                                    <option value="clay">Clay</option>
+                                    <option value="silty">Silty</option>
+                                    <option value="peaty">Peaty</option>
+                                    <option value="chalky">Chalky</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="area">Farm Area (in acres)</label>
+                                    <input type="number" id="area" min="0.1" step="0.1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="growth">Growth Stage</label>
+                                    <select id="growth" required>
+                                        <option value="">Select Growth Stage</option>
+                                        <option value="preparation">Land Preparation</option>
+                                        <option value="sowing">Sowing</option>
+                                        <option value="seedling">Seedling</option>
+                                        <option value="vegetative">Vegetative</option>
+                                        <option value="flowering">Flowering</option>
+                                        <option value="fruiting">Fruiting</option>
+                                        <option value="maturity">Maturity</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="previous">Previous Fertilizer Used (if any)</label>
+                                <input type="text" id="previous" placeholder="e.g., Urea, DAP, NPK">
+                            </div>
+                            
+                            <button type="submit" class="calculate-btn">Get Recommendation</button>
+                        </form>
+                    </div>
+                    
+                    <div class="results-container" id="fertilizerResults">
+                        <div class="result-card">
+                            <div class="result-header">
+                                <div class="result-icon">
+                                    <i class="fas fa-flask"></i>
+                                </div>
+                                <h3 class="result-title">Fertilizer Recommendation</h3>
+                            </div>
+                            
+                            <div class="recommendation-grid">
+                                <div class="recommendation-item">
+                                    <h4><i class="fas fa-vial"></i> Primary Fertilizer</h4>
+                                    <p>Recommended for your soil type and crop</p>
+                                    <div class="value" id="primaryFertilizer">NPK 20:20:20</div>
+                                </div>
+                                
+                                <div class="recommendation-item">
+                                    <h4><i class="fas fa-weight"></i> Quantity Required</h4>
+                                    <p>For your farm area</p>
+                                    <div class="value" id="fertilizerQuantity">50 kg</div>
+                                </div>
+                                
+                                <div class="recommendation-item">
+                                    <h4><i class="fas fa-calendar-alt"></i> Application Time</h4>
+                                    <p>Best time for application</p>
+                                    <div class="value" id="applicationTime">Early Morning</div>
+                                </div>
+                                
+                                <div class="recommendation-item">
+                                    <h4><i class="fas fa-seedling"></i> Application Method</h4>
+                                    <p>Recommended technique</p>
+                                    <div class="value" id="applicationMethod">Broadcasting</div>
+                                </div>
+                            </div>
+                            
+                            <div class="schedule-container">
+                                <h4 class="schedule-title">
+                                    <i class="fas fa-calendar-check"></i> Application Schedule
+                                </h4>
+                                
+                                <table class="schedule-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Stage</th>
+                                            <th>Fertilizer</th>
+                                            <th>Quantity</th>
+                                            <th>Timing</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Basal Dose</td>
+                                            <td>NPK 20:20:20</td>
+                                            <td>25 kg/acre</td>
+                                            <td>At sowing</td>
+                                        </tr>
+                                        <tr>
+                                            <td>First Dose</td>
+                                            <td>Urea</td>
+                                            <td>15 kg/acre</td>
+                                            <td>20-25 days after sowing</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Second Dose</td>
+                                            <td>Potassium</td>
+                                            <td>10 kg/acre</td>
+                                            <td>40-45 days after sowing</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Final Dose</td>
+                                            <td>Foliar Spray</td>
+                                            <td>2 L/acre</td>
+                                            <td>At flowering stage</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="tips-container">
+                                <h4 class="tips-title">
+                                    <i class="fas fa-lightbulb"></i> Application Tips
+                                </h4>
+                                <ul class="tips-list">
+                                    <li>Apply fertilizers when soil moisture is adequate</li>
+                                    <li>Ensure uniform distribution across the field</li>
+                                    <li>Avoid application during heavy rain or high temperatures</li>
+                                    <li>Consider soil test results for precise recommendations</li>
+                                    <li>Maintain proper records of fertilizer application</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="action-buttons">
+                                <button class="action-btn">
+                                    <i class="fas fa-download"></i> Download PDF
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-share-alt"></i> Share
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-print"></i> Print
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Irrigation Advisor Tab -->
+                <div class="tab-content" id="irrigation-advisor">
+                    <div class="advisor-form">
+                        <h3 class="form-title">Irrigation Recommendation</h3>
+                        
+                        <form id="irrigationForm">
+                            <div class="form-group">
+                                <label for="irrigation-crop">Crop Type</label>
+                                <select id="irrigation-crop" required>
+                                    <option value="">Select Crop</option>
+                                    <option value="wheat">Wheat</option>
+                                    <option value="rice">Rice</option>
+                                    <option value="cotton">Cotton</option>
+                                    <option value="sugarcane">Sugarcane</option>
+                                    <option value="maize">Maize</option>
+                                    <option value="pulses">Pulses</option>
+                                    <option value="vegetables">Vegetables</option>
+                                    <option value="fruits">Fruits</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="irrigation-soil">Soil Type</label>
+                                <select id="irrigation-soil" required>
+                                    <option value="">Select Soil Type</option>
+                                    <option value="sandy">Sandy</option>
+                                    <option value="loamy">Loamy</option>
+                                    <option value="clay">Clay</option>
+                                    <option value="silty">Silty</option>
+                                    <option value="peaty">Peaty</option>
+                                    <option value="chalky">Chalky</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="irrigation-area">Farm Area (in acres)</label>
+                                    <input type="number" id="irrigation-area" min="0.1" step="0.1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="irrigation-method">Irrigation Method</label>
+                                    <select id="irrigation-method" required>
+                                        <option value="">Select Method</option>
+                                        <option value="flood">Flood</option>
+                                        <option value="furrow">Furrow</option>
+                                        <option value="sprinkler">Sprinkler</option>
+                                        <option value="drip">Drip</option>
+                                        <option value="center">Center Pivot</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="water-source">Water Source</label>
+                                <select id="water-source" required>
+                                    <option value="">Select Water Source</option>
+                                    <option value="canal">Canal</option>
+                                    <option value="tube-well">Tube Well</option>
+                                    <option value="well">Well</option>
+                                    <option value="tank">Tank</option>
+                                    <option value="river">River</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="calculate-btn">Get Recommendation</button>
+                        </form>
+                    </div>
+                    
+                    <div class="results-container" id="irrigationResults">
+                        <div class="result-card">
+                            <div class="result-header">
+                                <div class="result-icon">
+                                    <i class="fas fa-tint"></i>
+                                </div>
+                                <h3 class="result-title">Irrigation Recommendation</h3>
+                            </div>
+                            
+                            <div class="recommendation-grid">
+                                <div class="recommendation-item">
+                                    <h4><i class="fas fa-clock"></i> Irrigation Frequency</h4>
+                                    <p>Recommended for your conditions</p>
+                                    <div class="value" id="irrigationFrequency">Every 5 days</div>
+                                </div>
+                                
+                                <div class="recommendation-item">
+                                    <h4><i class="fas fa-water"></i> Water Required</h4>
+                                    <p>Per irrigation cycle</p>
+                                    <div class="value" id="waterRequired">2 inches</div>
+                                </div>
+                                
+                                <div class="recommendation-item">
+                                    <h4><i class="fas fa-hourglass-half"></i> Duration</h4>
+                                    <p>Time required per irrigation</p>
+                                    <div class="value" id="irrigationDuration">3 hours</div>
+                                </div>
+                                
+                                <div class="recommendation-item">
+                                    <h4><i class="fas fa-calendar-alt"></i> Best Time</h4>
+                                    <p>Optimal time for irrigation</p>
+                                    <div class="value" id="bestIrrigationTime">Early Morning</div>
+                                </div>
+                            </div>
+                            
+                            <div class="schedule-container">
+                                <h4 class="schedule-title">
+                                    <i class="fas fa-calendar-check"></i> Irrigation Schedule
+                                </h4>
+                                
+                                <table class="schedule-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Growth Stage</th>
+                                            <th>Frequency</th>
+                                            <th>Water Depth</th>
+                                            <th>Duration</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Initial</td>
+                                            <td>Every 3 days</td>
+                                            <td>1 inch</td>
+                                            <td>2 hours</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Vegetative</td>
+                                            <td>Every 5 days</td>
+                                            <td>2 inches</td>
+                                            <td>3 hours</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Flowering</td>
+                                            <td>Every 4 days</td>
+                                            <td>2.5 inches</td>
+                                            <td>3.5 hours</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Maturity</td>
+                                            <td>Every 7 days</td>
+                                            <td>1.5 inches</td>
+                                            <td>2.5 hours</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="tips-container">
+                                <h4 class="tips-title">
+                                    <i class="fas fa-lightbulb"></i> Irrigation Tips
+                                </h4>
+                                <ul class="tips-list">
+                                    <li>Monitor soil moisture regularly to avoid over or under irrigation</li>
+                                    <li>Consider weather forecasts before scheduling irrigation</li>
+                                    <li>Use mulch to reduce evaporation and conserve water</li>
+                                    <li>Ensure proper drainage to prevent waterlogging</li>
+                                    <li>Adjust schedule based on crop growth and seasonal changes</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="action-buttons">
+                                <button class="action-btn">
+                                    <i class="fas fa-download"></i> Download PDF
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-share-alt"></i> Share
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-print"></i> Print
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+   @*  <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-container">
+                        <i class="fas fa-seedling"></i>
+                        <span>Khetsaathi</span>
+                    </div>
+                    <p>Empowering farmers with digital solutions for sustainable agriculture.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Farmers Guide</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                        <li><a href="#">Partner Program</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Agri Tech Park, Ghaziabad</li>
+                        <li><i class="fas fa-phone-alt"></i> +912323232230</li>
+                        <li><i class="fas fa-envelope"></i> support@khetsaathi.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Khetsaathi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+     *@
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Fertilizer form submission
+            const fertilizerForm = document.getElementById('fertilizerForm');
+            const fertilizerResults = document.getElementById('fertilizerResults');
+            
+            fertilizerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const crop = document.getElementById('crop').value;
+                const soil = document.getElementById('soil').value;
+                const area = parseFloat(document.getElementById('area').value);
+                const growth = document.getElementById('growth').value;
+                const previous = document.getElementById('previous').value;
+                
+                // Simulate processing
+                const submitBtn = this.querySelector('.calculate-btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    // Update results based on form data
+                    updateFertilizerResults(crop, soil, area, growth, previous);
+                    
+                    // Show results
+                    fertilizerResults.style.display = 'block';
+                    
+                    // Reset button
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    
+                    // Scroll to results
+                    fertilizerResults.scrollIntoView({ behavior: 'smooth' });
+                }, 2000);
+            });
+            
+            // Irrigation form submission
+            const irrigationForm = document.getElementById('irrigationForm');
+            const irrigationResults = document.getElementById('irrigationResults');
+            
+            irrigationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const crop = document.getElementById('irrigation-crop').value;
+                const soil = document.getElementById('irrigation-soil').value;
+                const area = parseFloat(document.getElementById('irrigation-area').value);
+                const method = document.getElementById('irrigation-method').value;
+                const waterSource = document.getElementById('water-source').value;
+                
+                // Simulate processing
+                const submitBtn = this.querySelector('.calculate-btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    // Update results based on form data
+                    updateIrrigationResults(crop, soil, area, method, waterSource);
+                    
+                    // Show results
+                    irrigationResults.style.display = 'block';
+                    
+                    // Reset button
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    
+                    // Scroll to results
+                    irrigationResults.scrollIntoView({ behavior: 'smooth' });
+                }, 2000);
+            });
+            
+            // Update fertilizer results based on inputs
+            function updateFertilizerResults(crop, soil, area, growth, previous) {
+                // Update primary fertilizer recommendation based on crop and soil
+                const fertilizerMap = {
+                    'wheat': {
+                        'sandy': 'NPK 15:15:15',
+                        'loamy': 'NPK 20:20:20',
+                        'clay': 'NPK 10:26:26',
+                        'silty': 'NPK 20:20:20',
+                        'peaty': 'NPK 10:10:20',
+                        'chalky': 'NPK 15:15:15'
+                    },
+                    'rice': {
+                        'sandy': 'NPK 20:20:20',
+                        'loamy': 'NPK 20:10:10',
+                        'clay': 'NPK 15:15:15',
+                        'silty': 'NPK 20:10:10',
+                        'peaty': 'NPK 15:15:20',
+                        'chalky': 'NPK 20:20:20'
+                    },
+                    'cotton': {
+                        'sandy': 'NPK 20:10:20',
+                        'loamy': 'NPK 20:10:20',
+                        'clay': 'NPK 15:10:15',
+                        'silty': 'NPK 20:10:20',
+                        'peaty': 'NPK 15:10:20',
+                        'chalky': 'NPK 20:10:20'
+                    },
+                    'sugarcane': {
+                        'sandy': 'NPK 15:15:15',
+                        'loamy': 'NPK 25:10:10',
+                        'clay': 'NPK 20:10:10',
+                        'silty': 'NPK 25:10:10',
+                        'peaty': 'NPK 15:15:20',
+                        'chalky': 'NPK 20:10:10'
+                    }
+                };
+                
+                // Default values
+                const defaultFertilizer = fertilizerMap[crop] && fertilizerMap[crop][soil] 
+                    ? fertilizerMap[crop][soil] 
+                    : 'NPK 20:20:20';
+                
+                const quantity = Math.round(area * 50);
+                const applicationTime = growth === 'sowing' ? 'At Sowing' : 'Early Morning';
+                const applicationMethod = 'Broadcasting';
+                
+                // Update DOM elements
+                document.getElementById('primaryFertilizer').textContent = defaultFertilizer;
+                document.getElementById('fertilizerQuantity').textContent = quantity + ' kg';
+                document.getElementById('applicationTime').textContent = applicationTime;
+                document.getElementById('applicationMethod').textContent = applicationMethod;
+            }
+            
+            // Update irrigation results based on inputs
+            function updateIrrigationResults(crop, soil, area, method, waterSource) {
+                // Update irrigation frequency based on crop and soil
+                const frequencyMap = {
+                    'wheat': {
+                        'sandy': 'Every 3 days',
+                        'loamy': 'Every 5 days',
+                        'clay': 'Every 7 days',
+                        'silty': 'Every 4 days',
+                        'peaty': 'Every 6 days',
+                        'chalky': 'Every 5 days'
+                    },
+                    'rice': {
+                        'sandy': 'Every 2 days',
+                        'loamy': 'Every 3 days',
+                        'clay': 'Every 4 days',
+                        'silty': 'Every 3 days',
+                        'peaty': 'Every 4 days',
+                        'chalky': 'Every 3 days'
+                    },
+                    'cotton': {
+                        'sandy': 'Every 4 days',
+                        'loamy': 'Every 6 days',
+                        'clay': 'Every 8 days',
+                        'silty': 'Every 5 days',
+                        'peaty': 'Every 7 days',
+                        'chalky': 'Every 6 days'
+                    },
+                    'sugarcane': {
+                        'sandy': 'Every 5 days',
+                        'loamy': 'Every 7 days',
+                        'clay': 'Every 10 days',
+                        'silty': 'Every 6 days',
+                        'peaty': 'Every 8 days',
+                        'chalky': 'Every 7 days'
+                    }
+                };
+                
+                // Default values
+                const defaultFrequency = frequencyMap[crop] && frequencyMap[crop][soil] 
+                    ? frequencyMap[crop][soil] 
+                    : 'Every 5 days';
+                
+                const waterRequired = soil === 'sandy' ? '2.5 inches' : 
+                                     soil === 'clay' ? '1.5 inches' : '2 inches';
+                
+                const duration = method === 'drip' ? '4 hours' : 
+                                method === 'sprinkler' ? '3 hours' : '2 hours';
+                
+                const bestTime = 'Early Morning';
+                
+                // Update DOM elements
+                document.getElementById('irrigationFrequency').textContent = defaultFrequency;
+                document.getElementById('waterRequired').textContent = waterRequired;
+                document.getElementById('irrigationDuration').textContent = duration;
+                document.getElementById('bestIrrigationTime').textContent = bestTime;
+            }
+            
+            // Weather refresh button
+            const weatherRefresh = document.getElementById('weatherRefresh');
+            weatherRefresh.addEventListener('click', function() {
+                // Simulate weather refresh
+                const icon = this.querySelector('i');
+                icon.classList.add('fa-spin');
+                
+                setTimeout(() => {
+                    icon.classList.remove('fa-spin');
+                    // In a real app, this would fetch new weather data
+                }, 1000);
+            });
+            
+            // Action buttons
+            const actionButtons = document.querySelectorAll('.action-btn');
+            actionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const buttonText = this.textContent.trim();
+                    
+                    if (buttonText.includes('Download')) {
+                        alert('Download functionality would be implemented here. This would generate a PDF of the recommendations.');
+                    } else if (buttonText.includes('Share')) {
+                        alert('Share functionality would be implemented here. This would allow sharing the recommendations with other farmers or experts.');
+                    } else if (buttonText.includes('Print')) {
+                        alert('Print functionality would be implemented here. This would open a print dialog for the recommendations.');
+                    }
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                
+                if (window.scrollY > 100) {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.05)';
+                }
+            });
+        });
+    </script>

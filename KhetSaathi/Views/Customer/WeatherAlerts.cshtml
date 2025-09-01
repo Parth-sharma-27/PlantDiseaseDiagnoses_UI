@@ -1,0 +1,1539 @@
+﻿@{
+    Layout = "_DashboardLayout";
+}
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #4CAF50;
+            --accent-color: #FF9800;
+            --light-color: #F8F9FA;
+            --dark-color: #212529;
+            --text-color: #495057;
+            --white: #FFFFFF;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s ease;
+            --gradient: linear-gradient(135deg, #2E7D32, #4CAF50);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+        }
+        
+        .logo-container i {
+            font-size: 28px;
+            color: var(--accent-color);
+        }
+        
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .back-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Weather Alerts Section */
+        .weather-section {
+            padding: 120px 0 80px;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1592210454359-bc19944dd192?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -10px;
+            left: 20%;
+            border-radius: 2px;
+        }
+        
+        .section-header h2 span {
+            color: var(--primary-color);
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 25px auto 0;
+            color: var(--text-color);
+        }
+        
+        /* Current Weather Widget */
+        .current-weather {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .current-weather::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--gradient);
+        }
+        
+        .weather-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .weather-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .weather-title i {
+            color: var(--primary-color);
+        }
+        
+        .weather-refresh {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .weather-refresh:hover {
+            transform: rotate(180deg);
+        }
+        
+        .weather-main {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .weather-icon-container {
+            position: relative;
+        }
+        
+        .weather-icon {
+            font-size: 80px;
+            color: var(--accent-color);
+        }
+        
+        .weather-temp {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .weather-desc {
+            font-size: 20px;
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+        
+        .weather-location {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-color);
+        }
+        
+        .weather-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        
+        .weather-detail {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: rgba(46, 125, 50, 0.05);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+        
+        .weather-detail:hover {
+            background: rgba(46, 125, 50, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .weather-detail i {
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+        
+        .weather-detail-info {
+            flex: 1;
+        }
+        
+        .weather-detail-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .weather-detail-label {
+            font-size: 14px;
+            color: var(--text-color);
+        }
+        
+        /* Weather Alerts */
+        .alerts-container {
+            margin-bottom: 30px;
+        }
+        
+        .alerts-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .alerts-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .alerts-title i {
+            color: var(--primary-color);
+        }
+        
+        .alerts-filter {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background: var(--white);
+            color: var(--text-color);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
+        }
+        
+        .alerts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .alert-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .alert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .alert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+        }
+        
+        .alert-card.red::before {
+            background: #F44336;
+        }
+        
+        .alert-card.orange::before {
+            background: var(--accent-color);
+        }
+        
+        .alert-card.yellow::before {
+            background: #FFC107;
+        }
+        
+        .alert-card.blue::before {
+            background: #2196F3;
+        }
+        
+        .alert-card.green::before {
+            background: var(--secondary-color);
+        }
+        
+        .alert-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 20px;
+            border-radius: 50%;
+        }
+        
+        .alert-card.red .alert-icon {
+            background: rgba(244, 67, 54, 0.1);
+            color: #F44336;
+        }
+        
+        .alert-card.orange .alert-icon {
+            background: rgba(255, 152, 0, 0.1);
+            color: var(--accent-color);
+        }
+        
+        .alert-card.yellow .alert-icon {
+            background: rgba(255, 193, 7, 0.1);
+            color: #FFC107;
+        }
+        
+        .alert-card.blue .alert-icon {
+            background: rgba(33, 150, 243, 0.1);
+            color: #2196F3;
+        }
+        
+        .alert-card.green .alert-icon {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--secondary-color);
+        }
+        
+        .alert-content {
+            padding: 0 20px 20px;
+        }
+        
+        .alert-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+        
+        .alert-description {
+            color: var(--text-color);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .alert-time {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+        
+        .alert-action {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .alert-recommendation {
+            font-size: 14px;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .alert-dismiss {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .alert-dismiss:hover {
+            color: var(--dark-color);
+        }
+        
+        /* Weather Forecast */
+        .forecast-container {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .forecast-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .forecast-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .forecast-title i {
+            color: var(--primary-color);
+        }
+        
+        .forecast-period {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .period-btn {
+            padding: 8px 16px;
+            background: var(--white);
+            color: var(--text-color);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .period-btn:hover,
+        .period-btn.active {
+            background: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
+        }
+        
+        .forecast-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        
+        .forecast-day {
+            background: rgba(46, 125, 50, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .forecast-day:hover {
+            background: rgba(46, 125, 50, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .forecast-day-name {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+        
+        .forecast-day-date {
+            font-size: 14px;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+        
+        .forecast-day-icon {
+            font-size: 36px;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+        
+        .forecast-day-temp {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+        
+        .forecast-day-range {
+            font-size: 14px;
+            color: var(--text-color);
+        }
+        
+        /* Recommendations */
+        .recommendations-container {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .recommendations-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .recommendations-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .recommendations-title i {
+            color: var(--primary-color);
+        }
+        
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .recommendation-card {
+            background: rgba(46, 125, 50, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            transition: var(--transition);
+        }
+        
+        .recommendation-card:hover {
+            background: rgba(46, 125, 50, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .recommendation-card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .recommendation-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.2);
+        }
+        
+        .recommendation-title-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            color: var(--dark-color);
+        }
+        
+        .recommendation-description {
+            color: var(--text-color);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .recommendation-list {
+            list-style: none;
+        }
+        
+        .recommendation-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .recommendation-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--secondary-color);
+        }
+        
+        /* Notification Settings */
+        .notification-settings {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .settings-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: var(--dark-color);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .settings-header i {
+            color: var(--primary-color);
+        }
+        
+        .settings-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .setting-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background: rgba(46, 125, 50, 0.05);
+            border-radius: 10px;
+        }
+        
+        .setting-info {
+            flex: 1;
+        }
+        
+        .setting-title {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+        
+        .setting-description {
+            font-size: 14px;
+            color: var(--text-color);
+        }
+        
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 25px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            top: 2.5px;
+            left: 2.5px;
+            width: 20px;
+            height: 20px;
+            background: var(--white);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .toggle-switch input:checked + .toggle-slider {
+            transform: translateX(25px);
+        }
+        
+        .toggle-switch input:checked ~ .toggle-switch {
+            background: var(--primary-color);
+        }
+        
+        .toggle-switch.checked {
+            background: var(--primary-color);
+        }
+        
+        .toggle-switch.checked .toggle-slider {
+            transform: translateX(25px);
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .action-btn {
+            padding: 12px 25px;
+            background: var(--white);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .action-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 70px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 90%, rgba(76, 175, 80, 0.2) 0%, transparent 60%);
+            z-index: 1;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .footer-logo .logo-container {
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-logo p {
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        
+        .footer-links h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+            color: var(--white);
+        }
+        
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .footer-links a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            bottom: -2px;
+            left: 0;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+        
+        .footer-links a:hover::before {
+            width: 100%;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 16px;
+            opacity: 0.7;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Responsive Styles */
+        @@media (max-width: 992px) {
+            .alerts-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .forecast-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            
+            .recommendations-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @@media (max-width: 768px) {
+            .weather-main {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .weather-details {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .alerts-filter {
+                flex-wrap: wrap;
+            }
+            
+            .forecast-period {
+                flex-wrap: wrap;
+            }
+            
+            .section-header h2 {
+                font-size: 30px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @@media (max-width: 576px) {
+            .section-header h2 {
+                font-size: 26px;
+            }
+            
+            .weather-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .alerts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .forecast-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .recommendations-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .settings-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    
+    <!-- Weather-Aware Alerts Section -->
+    <section class="weather-section pt-2">
+        <div class="container">
+            <div class="section-header">
+                <h2>Weather-Aware <span>Alerts</span></h2>
+                <p>Get timely weather alerts and recommendations to protect your crops and optimize farming activities</p>
+            </div>
+            
+            <!-- Current Weather Widget -->
+            <div class="current-weather">
+                <div class="weather-header">
+                    <h3 class="weather-title">
+                        <i class="fas fa-cloud-sun"></i> Current Weather
+                    </h3>
+                    <button class="weather-refresh" id="weatherRefresh">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+                
+                <div class="weather-main">
+                    <div class="weather-icon-container">
+                        <i class="fas fa-sun weather-icon"></i>
+                    </div>
+                    <div>
+                        <div class="weather-temp">32°C</div>
+                        <div class="weather-desc">Sunny</div>
+                        <div class="weather-location">
+                            <i class="fas fa-map-marker-alt"></i> Delhi, India
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="weather-details">
+                    <div class="weather-detail">
+                        <i class="fas fa-tint"></i>
+                        <div class="weather-detail-info">
+                            <div class="weather-detail-value">45%</div>
+                            <div class="weather-detail-label">Humidity</div>
+                        </div>
+                    </div>
+                    
+                    <div class="weather-detail">
+                        <i class="fas fa-wind"></i>
+                        <div class="weather-detail-info">
+                            <div class="weather-detail-value">12 km/h</div>
+                            <div class="weather-detail-label">Wind Speed</div>
+                        </div>
+                    </div>
+                    
+                    <div class="weather-detail">
+                        <i class="fas fa-compress-arrows-alt"></i>
+                        <div class="weather-detail-info">
+                            <div class="weather-detail-value">1012 hPa</div>
+                            <div class="weather-detail-label">Pressure</div>
+                        </div>
+                    </div>
+                    
+                    <div class="weather-detail">
+                        <i class="fas fa-eye"></i>
+                        <div class="weather-detail-info">
+                            <div class="weather-detail-value">10 km</div>
+                            <div class="weather-detail-label">Visibility</div>
+                        </div>
+                    </div>
+                    
+                    <div class="weather-detail">
+                        <i class="fas fa-sun"></i>
+                        <div class="weather-detail-info">
+                            <div class="weather-detail-value">High</div>
+                            <div class="weather-detail-label">UV Index</div>
+                        </div>
+                    </div>
+                    
+                    <div class="weather-detail">
+                        <i class="fas fa-thermometer-half"></i>
+                        <div class="weather-detail-info">
+                            <div class="weather-detail-value">35°C</div>
+                            <div class="weather-detail-label">Feels Like</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Weather Alerts -->
+            <div class="alerts-container">
+                <div class="alerts-header">
+                    <h3 class="alerts-title">
+                        <i class="fas fa-exclamation-triangle"></i> Weather Alerts
+                    </h3>
+                    <div class="alerts-filter">
+                        <button class="filter-btn active">All</button>
+                        <button class="filter-btn">Critical</button>
+                        <button class="filter-btn">Warning</button>
+                        <button class="filter-btn">Watch</button>
+                        <button class="filter-btn">Info</button>
+                    </div>
+                </div>
+                
+                <div class="alerts-grid">
+                    <div class="alert-card red">
+                        <div class="alert-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="alert-content">
+                            <h4 class="alert-title">Thunderstorm Warning</h4>
+                            <p class="alert-description">Severe thunderstorm expected in your area within the next 2 hours with heavy rainfall and strong winds.</p>
+                            <div class="alert-time">
+                                <i class="fas fa-clock"></i> Issued 30 minutes ago
+                            </div>
+                            <div class="alert-action">
+                                <span class="alert-recommendation">Delay harvesting activities</span>
+                                <button class="alert-dismiss">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert-card orange">
+                        <div class="alert-icon">
+                            <i class="fas fa-temperature-high"></i>
+                        </div>
+                        <div class="alert-content">
+                            <h4 class="alert-title">Heat Wave Alert</h4>
+                            <p class="alert-description">Extreme heat conditions expected for the next 3 days with temperatures reaching 42°C.</p>
+                            <div class="alert-time">
+                                <i class="fas fa-clock"></i> Issued 2 hours ago
+                            </div>
+                            <div class="alert-action">
+                                <span class="alert-recommendation">Increase irrigation frequency</span>
+                                <button class="alert-dismiss">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert-card yellow">
+                        <div class="alert-icon">
+                            <i class="fas fa-cloud-rain"></i>
+                        </div>
+                        <div class="alert-content">
+                            <h4 class="alert-title">Rainfall Forecast</h4>
+                            <p class="alert-description">Moderate to heavy rainfall expected tomorrow afternoon. Consider adjusting your irrigation schedule.</p>
+                            <div class="alert-time">
+                                <i class="fas fa-clock"></i> Issued 4 hours ago
+                            </div>
+                            <div class="alert-action">
+                                <span class="alert-recommendation">Skip tomorrow's irrigation</span>
+                                <button class="alert-dismiss">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert-card blue">
+                        <div class="alert-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <div class="alert-content">
+                            <h4 class="alert-title">Strong Winds</h4>
+                            <p class="alert-description">Strong winds expected tomorrow with speeds up to 40 km/h. Secure loose items in your farm.</p>
+                            <div class="alert-time">
+                                <i class="fas fa-clock"></i> Issued 5 hours ago
+                            </div>
+                            <div class="alert-action">
+                                <span class="alert-recommendation">Secure greenhouse structures</span>
+                                <button class="alert-dismiss">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert-card green">
+                        <div class="alert-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="alert-content">
+                            <h4 class="alert-title">Favorable Weather</h4>
+                            <p class="alert-description">Ideal weather conditions for the next 5 days with moderate temperatures and sunshine.</p>
+                            <div class="alert-time">
+                                <i class="fas fa-clock"></i> Issued 6 hours ago
+                            </div>
+                            <div class="alert-action">
+                                <span class="alert-recommendation">Good time for field activities</span>
+                                <button class="alert-dismiss">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Weather Forecast -->
+            <div class="forecast-container">
+                <div class="forecast-header">
+                    <h3 class="forecast-title">
+                        <i class="fas fa-calendar-alt"></i> Weather Forecast
+                    </h3>
+                    <div class="forecast-period">
+                        <button class="period-btn">5 Days</button>
+                        <button class="period-btn active">7 Days</button>
+                        <button class="period-btn">10 Days</button>
+                    </div>
+                </div>
+                
+                <div class="forecast-grid">
+                    <div class="forecast-day">
+                        <div class="forecast-day-name">Today</div>
+                        <div class="forecast-day-date">Oct 15</div>
+                        <div class="forecast-day-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="forecast-day-temp">32°C</div>
+                        <div class="forecast-day-range">24°C / 32°C</div>
+                    </div>
+                    
+                    <div class="forecast-day">
+                        <div class="forecast-day-name">Mon</div>
+                        <div class="forecast-day-date">Oct 16</div>
+                        <div class="forecast-day-icon">
+                            <i class="fas fa-cloud-sun"></i>
+                        </div>
+                        <div class="forecast-day-temp">30°C</div>
+                        <div class="forecast-day-range">23°C / 30°C</div>
+                    </div>
+                    
+                    <div class="forecast-day">
+                        <div class="forecast-day-name">Tue</div>
+                        <div class="forecast-day-date">Oct 17</div>
+                        <div class="forecast-day-icon">
+                            <i class="fas fa-cloud-rain"></i>
+                        </div>
+                        <div class="forecast-day-temp">28°C</div>
+                        <div class="forecast-day-range">22°C / 28°C</div>
+                    </div>
+                    
+                    <div class="forecast-day">
+                        <div class="forecast-day-name">Wed</div>
+                        <div class="forecast-day-date">Oct 18</div>
+                        <div class="forecast-day-icon">
+                            <i class="fas fa-cloud-rain"></i>
+                        </div>
+                        <div class="forecast-day-temp">27°C</div>
+                        <div class="forecast-day-range">21°C / 27°C</div>
+                    </div>
+                    
+                    <div class="forecast-day">
+                        <div class="forecast-day-name">Thu</div>
+                        <div class="forecast-day-date">Oct 19</div>
+                        <div class="forecast-day-icon">
+                            <i class="fas fa-cloud-sun"></i>
+                        </div>
+                        <div class="forecast-day-temp">29°C</div>
+                        <div class="forecast-day-range">22°C / 29°C</div>
+                    </div>
+                    
+                    <div class="forecast-day">
+                        <div class="forecast-day-name">Fri</div>
+                        <div class="forecast-day-date">Oct 20</div>
+                        <div class="forecast-day-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="forecast-day-temp">31°C</div>
+                        <div class="forecast-day-range">23°C / 31°C</div>
+                    </div>
+                    
+                    <div class="forecast-day">
+                        <div class="forecast-day-name">Sat</div>
+                        <div class="forecast-day-date">Oct 21</div>
+                        <div class="forecast-day-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="forecast-day-temp">33°C</div>
+                        <div class="forecast-day-range">24°C / 33°C</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Weather-Based Recommendations -->
+            <div class="recommendations-container">
+                <div class="recommendations-header">
+                    <h3 class="recommendations-title">
+                        <i class="fas fa-lightbulb"></i> Weather-Based Recommendations
+                    </h3>
+                </div>
+                
+                <div class="recommendations-grid">
+                    <div class="recommendation-card">
+                        <div class="recommendation-card-header">
+                            <div class="recommendation-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <h4 class="recommendation-title-text">Irrigation Management</h4>
+                        </div>
+                        <p class="recommendation-description">Optimize your irrigation schedule based on current and forecasted weather conditions.</p>
+                        <ul class="recommendation-list">
+                            <li>Reduce irrigation before expected rainfall</li>
+                            <li>Increase frequency during heat waves</li>
+                            <li>Water early morning to minimize evaporation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="recommendation-card">
+                        <div class="recommendation-card-header">
+                            <div class="recommendation-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <h4 class="recommendation-title-text">Planting Activities</h4>
+                        </div>
+                        <p class="recommendation-description">Plan your planting schedule according to favorable weather conditions.</p>
+                        <ul class="recommendation-list">
+                            <li>Avoid planting before heavy rains</li>
+                            <li>Choose cloud cover for transplanting</li>
+                            <li>Delay planting during extreme temperatures</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="recommendation-card">
+                        <div class="recommendation-card-header">
+                            <div class="recommendation-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h4 class="recommendation-title-text">Fertilizer Application</h4>
+                        </div>
+                        <p class="recommendation-description">Time your fertilizer application for maximum effectiveness and minimum runoff.</p>
+                        <ul class="recommendation-list">
+                            <li>Apply before light rain for better absorption</li>
+                            <li>Avoid application before heavy rainfall</li>
+                            <li>Use cloud cover to reduce evaporation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="recommendation-card">
+                        <div class="recommendation-card-header">
+                            <div class="recommendation-icon">
+                                <i class="fas fa-cut"></i>
+                            </div>
+                            <h4 class="recommendation-title-text">Harvest Planning</h4>
+                        </div>
+                        <p class="recommendation-description">Schedule your harvest activities during optimal weather conditions.</p>
+                        <ul class="recommendation-list">
+                            <li>Harvest before forecasted rain</li>
+                            <li>Choose cool, dry days for harvesting</li>
+                            <li>Avoid harvesting during extreme heat</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Notification Settings -->
+            <div class="notification-settings">
+                <h3 class="settings-header">
+                    <i class="fas fa-bell"></i> Notification Settings
+                </h3>
+                
+                <div class="settings-form">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <div class="setting-title">Critical Weather Alerts</div>
+                            <div class="setting-description">Get notified about severe weather conditions</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <div class="setting-title">Daily Weather Summary</div>
+                            <div class="setting-description">Receive daily weather forecast at 6 AM</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <div class="setting-title">Rainfall Alerts</div>
+                            <div class="setting-description">Get notified when rain is expected</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <div class="setting-title">Temperature Extremes</div>
+                            <div class="setting-description">Alert for very high or low temperatures</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <div class="setting-title">Farming Recommendations</div>
+                            <div class="setting-description">Get personalized farming activity suggestions</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <div class="setting-title">Wind Alerts</div>
+                            <div class="setting-description">Notifications for strong wind conditions</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="action-btn">
+                    <i class="fas fa-download"></i> Download Report
+                </button>
+                <button class="action-btn">
+                    <i class="fas fa-share-alt"></i> Share
+                </button>
+                <button class="action-btn">
+                    <i class="fas fa-cog"></i> Advanced Settings
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Weather refresh button
+            const weatherRefresh = document.getElementById('weatherRefresh');
+            weatherRefresh.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                icon.classList.add('fa-spin');
+                
+                setTimeout(() => {
+                    icon.classList.remove('fa-spin');
+                    // In a real app, this would fetch new weather data
+                }, 1000);
+            });
+            
+            // Alert filter buttons
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const alertCards = document.querySelectorAll('.alert-card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get filter type
+                    const filterType = this.textContent.toLowerCase();
+                    
+                    // Show/hide alert cards based on filter
+                    alertCards.forEach(card => {
+                        if (filterType === 'all') {
+                            card.style.display = 'block';
+                        } else if (card.classList.contains(filterType)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Forecast period buttons
+            const periodBtns = document.querySelectorAll('.period-btn');
+            
+            periodBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    periodBtns.forEach(b => b.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // In a real app, this would update the forecast display
+                });
+            });
+            
+            // Alert dismiss buttons
+            const dismissBtns = document.querySelectorAll('.alert-dismiss');
+            
+            dismissBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Find parent alert card and hide it
+                    const alertCard = this.closest('.alert-card');
+                    alertCard.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        alertCard.style.display = 'none';
+                    }, 300);
+                });
+            });
+            
+            // Toggle switches
+            const toggleSwitches = document.querySelectorAll('.toggle-switch input');
+            
+            toggleSwitches.forEach(toggle => {
+                toggle.addEventListener('change', function() {
+                    const toggleSwitch = this.parentElement;
+                    
+                    if (this.checked) {
+                        toggleSwitch.classList.add('checked');
+                    } else {
+                        toggleSwitch.classList.remove('checked');
+                    }
+                    
+                    // In a real app, this would save the notification preferences
+                });
+            });
+            
+            // Action buttons
+            const actionBtns = document.querySelectorAll('.action-btn');
+            
+            actionBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const buttonText = this.textContent.trim();
+                    
+                    if (buttonText.includes('Download')) {
+                        alert('Download functionality would be implemented here. This would generate a PDF of the weather alerts and recommendations.');
+                    } else if (buttonText.includes('Share')) {
+                        alert('Share functionality would be implemented here. This would allow sharing the weather information with other farmers.');
+                    } else if (buttonText.includes('Advanced Settings')) {
+                        alert('Advanced settings would be implemented here. This would allow for more detailed notification preferences and alert customization.');
+                    }
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                
+                if (window.scrollY > 100) {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.05)';
+                }
+            });
+        });
+    </script>

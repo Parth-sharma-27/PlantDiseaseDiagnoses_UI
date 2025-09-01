@@ -1,0 +1,786 @@
+﻿@{
+    Layout = "_DashboardLayout";
+}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #4CAF50;
+            --accent-color: #FF9800;
+            --light-color: #F8F9FA;
+            --dark-color: #212529;
+            --text-color: #495057;
+            --white: #FFFFFF;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s ease;
+            --gradient: linear-gradient(135deg, #2E7D32, #4CAF50);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+        }
+        
+        .logo-container i {
+            font-size: 28px;
+            color: var(--accent-color);
+        }
+        
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .back-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Voice Q&A Section */
+        .voice-qa-section {
+            padding: 120px 0 80px;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .voice-qa-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+        
+        .voice-qa-header {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .voice-qa-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 80% 80%, rgba(255, 152, 0, 0.3) 0%, transparent 60%);
+            z-index: 1;
+        }
+        
+        .voice-qa-header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .voice-qa-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .voice-qa-header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .language-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .language-btn {
+            padding: 8px 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .language-btn:hover, .language-btn.active {
+            background: var(--white);
+            color: var(--primary-color);
+            border-color: var(--white);
+        }
+        
+        .voice-qa-body {
+            padding: 40px;
+        }
+        
+        .voice-input-container {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .voice-input-btn {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            font-size: 40px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(46, 125, 50, 0.3);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        
+        .voice-input-btn::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            z-index: 1;
+            transition: var(--transition);
+            border-radius: 50%;
+        }
+        
+        .voice-input-btn:hover::before {
+            opacity: 0;
+        }
+        
+        .voice-input-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(46, 125, 50, 0.4);
+        }
+        
+        .voice-input-btn.listening {
+            background: var(--accent-color);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @@keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 152, 0, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(255, 152, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 152, 0, 0);
+            }
+        }
+        
+        .voice-input-text {
+            margin-top: 20px;
+            font-size: 18px;
+            color: var(--text-color);
+        }
+        
+        .conversation-container {
+            margin-top: 40px;
+        }
+        
+        .conversation-item {
+            margin-bottom: 30px;
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        @@keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .question-bubble {
+            background: var(--light-color);
+            border-radius: 20px 20px 20px 0;
+            padding: 20px;
+            margin-bottom: 15px;
+            position: relative;
+            max-width: 80%;
+            margin-left: auto;
+        }
+        
+        .question-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+            background: var(--light-color);
+            border-radius: 0 0 20px 0;
+            z-index: -1;
+        }
+        
+        .question-bubble .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: var(--text-color);
+        }
+        
+        .question-bubble .meta i {
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        .question-bubble .meta i:hover {
+            color: var(--secondary-color);
+        }
+        
+        .question-bubble p {
+            font-size: 16px;
+            color: var(--dark-color);
+        }
+        
+        .answer-bubble {
+            background: var(--gradient);
+            color: var(--white);
+            border-radius: 20px 20px 0 20px;
+            padding: 20px;
+            position: relative;
+            max-width: 80%;
+        }
+        
+        .answer-bubble::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -10px;
+            width: 20px;
+            height: 20px;
+            background: var(--gradient);
+            border-radius: 20px 0 0 0;
+            z-index: -1;
+        }
+        
+        .answer-bubble .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .answer-bubble .meta i {
+            cursor: pointer;
+        }
+        
+        .answer-bubble .meta i:hover {
+            opacity: 0.7;
+        }
+        
+        .answer-bubble p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .voice-qa-footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .help-text {
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+        
+        .example-questions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .example-question {
+            background: var(--light-color);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 30px;
+            padding: 8px 16px;
+            font-size: 14px;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .example-question:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 70px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 90%, rgba(76, 175, 80, 0.2) 0%, transparent 60%);
+            z-index: 1;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .footer-logo .logo-container {
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-logo p {
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        
+        .footer-links h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+            color: var(--white);
+        }
+        
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .footer-links a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            bottom: -2px;
+            left: 0;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+        
+        .footer-links a:hover::before {
+            width: 100%;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 16px;
+            opacity: 0.7;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Responsive Styles */
+        @@media (max-width: 768px) {
+            .voice-qa-header h2 {
+                font-size: 26px;
+            }
+            
+            .voice-qa-body {
+                padding: 30px 20px;
+            }
+            
+            .voice-input-btn {
+                width: 100px;
+                height: 100px;
+                font-size: 36px;
+            }
+            
+            .question-bubble, .answer-bubble {
+                max-width: 90%;
+            }
+            
+            .example-questions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .example-question {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+        }
+        
+        @@media (max-width: 576px) {
+            .voice-qa-header {
+                padding: 20px;
+            }
+            
+            .voice-qa-header h2 {
+                font-size: 22px;
+            }
+            
+            .voice-qa-header p {
+                font-size: 16px;
+            }
+            
+            .language-selector {
+                flex-wrap: wrap;
+            }
+            
+            .language-btn {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+            
+            .voice-qa-body {
+                padding: 20px;
+            }
+            
+            .voice-input-btn {
+                width: 80px;
+                height: 80px;
+                font-size: 30px;
+            }
+            
+            .voice-input-text {
+                font-size: 16px;
+            }
+        }
+    </style>
+
+    
+    <!-- Voice Q&A Section -->
+    <section class="voice-qa-section pt-4">
+        <div class="container">
+            <div class="voice-qa-container">
+                <div class="voice-qa-header">
+                    <div class="voice-qa-header-content">
+                        <h2>Voice Q&A Assistant</h2>
+                        <p>Ask questions in your local language and get instant answers</p>
+                        
+                        <div class="language-selector">
+                            <button class="language-btn active">Hindi</button>
+                            <button class="language-btn">Marathi</button>
+                            <button class="language-btn">Tamil</button>
+                            <button class="language-btn">Telugu</button>
+                            <button class="language-btn">Punjabi</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="voice-qa-body">
+                    <div class="voice-input-container">
+                        <button class="voice-input-btn" id="voiceInputBtn">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <div class="voice-input-text" id="voiceInputText">Tap the microphone and ask your question</div>
+                    </div>
+                    
+                    <div class="conversation-container" id="conversationContainer">
+                        <!-- Conversation items will be dynamically added here -->
+                    </div>
+                    
+                    <div class="voice-qa-footer">
+                        <p class="help-text">Try asking questions like:</p>
+                        <div class="example-questions">
+                            <div class="example-question">What is the weather today?</div>
+                            <div class="example-question">How to treat yellowing leaves?</div>
+                            <div class="example-question">What is the price of wheat?</div>
+                            <div class="example-question">When should I harvest my crop?</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+ 
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Language selection
+            const languageBtns = document.querySelectorAll('.language-btn');
+            languageBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    languageBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Voice input functionality
+            const voiceInputBtn = document.getElementById('voiceInputBtn');
+            const voiceInputText = document.getElementById('voiceInputText');
+            const conversationContainer = document.getElementById('conversationContainer');
+            let isListening = false;
+            
+            // Sample questions and answers for demonstration
+            const sampleQA = [
+                {
+                    question: "What is the weather today?",
+                    answer: "Today's weather is sunny with a temperature of 32°C. There is no chance of rain, so it's a good day for harvesting or irrigation activities."
+                },
+                {
+                    question: "How to treat yellowing leaves?",
+                    answer: "Yellowing leaves can be caused by nitrogen deficiency, overwatering, or pest infestation. I recommend applying nitrogen-rich fertilizer and checking for pests. If the problem persists, consult with an agricultural expert."
+                },
+                {
+                    question: "What is the price of wheat?",
+                    answer: "The current market price of wheat is ₹2,150 per quintal in the local market. Prices are expected to rise by 5% in the next week due to increased demand."
+                },
+                {
+                    question: "When should I harvest my crop?",
+                    answer: "Based on your crop's growth stage and current weather conditions, the ideal time for harvesting would be in the next 7-10 days. Make sure to check the moisture content of the grains before harvesting."
+                }
+            ];
+            
+            voiceInputBtn.addEventListener('click', function() {
+                if (!isListening) {
+                    startListening();
+                } else {
+                    stopListening();
+                }
+            });
+            
+            function startListening() {
+                isListening = true;
+                voiceInputBtn.classList.add('listening');
+                voiceInputBtn.innerHTML = '<i class="fas fa-stop"></i>';
+                voiceInputText.textContent = 'Listening... Speak now';
+                
+                // Simulate voice recognition after 2 seconds
+                setTimeout(() => {
+                    const randomIndex = Math.floor(Math.random() * sampleQA.length);
+                    const question = sampleQA[randomIndex].question;
+                    
+                    stopListening();
+                    displayQuestion(question);
+                    
+                    // Simulate processing and show answer after 1 second
+                    setTimeout(() => {
+                        displayAnswer(sampleQA[randomIndex].answer);
+                    }, 1000);
+                }, 2000);
+            }
+            
+            function stopListening() {
+                isListening = false;
+                voiceInputBtn.classList.remove('listening');
+                voiceInputBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+                voiceInputText.textContent = 'Tap the microphone and ask your question';
+            }
+            
+            function displayQuestion(question) {
+                const conversationItem = document.createElement('div');
+                conversationItem.className = 'conversation-item';
+                
+                const now = new Date();
+                const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                
+                conversationItem.innerHTML = `
+                    <div class="question-bubble">
+                        <div class="meta">
+                            <span>You</span>
+                            <span>${timeString}</span>
+                        </div>
+                        <p>${question}</p>
+                    </div>
+                `;
+                
+                conversationContainer.appendChild(conversationItem);
+                conversationContainer.scrollTop = conversationContainer.scrollHeight;
+            }
+            
+            function displayAnswer(answer) {
+                const conversationItem = document.createElement('div');
+                conversationItem.className = 'conversation-item';
+                
+                const now = new Date();
+                const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                
+                conversationItem.innerHTML = `
+                    <div class="answer-bubble">
+                        <div class="meta">
+                            <span>Khetsaathi</span>
+                            <i class="fas fa-volume-up" id="playAnswerBtn"></i>
+                        </div>
+                        <p>${answer}</p>
+                    </div>
+                `;
+                
+                conversationContainer.appendChild(conversationItem);
+                conversationContainer.scrollTop = conversationContainer.scrollHeight;
+                
+                // Add event listener to the play button
+                const playAnswerBtn = conversationItem.querySelector('#playAnswerBtn');
+                playAnswerBtn.addEventListener('click', function() {
+                    // Simulate playing the answer
+                    this.classList.remove('fa-volume-up');
+                    this.classList.add('fa-pause');
+                    
+                    setTimeout(() => {
+                        this.classList.remove('fa-pause');
+                        this.classList.add('fa-volume-up');
+                    }, 3000);
+                });
+            }
+            
+            // Example questions click functionality
+            const exampleQuestions = document.querySelectorAll('.example-question');
+            exampleQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const questionText = this.textContent;
+                    
+                    // Find the matching answer
+                    const qa = sampleQA.find(item => item.question === questionText);
+                    if (qa) {
+                        displayQuestion(questionText);
+                        
+                        setTimeout(() => {
+                            displayAnswer(qa.answer);
+                        }, 1000);
+                    }
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                
+                if (window.scrollY > 100) {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.05)';
+                }
+            });
+        });
+    </script>

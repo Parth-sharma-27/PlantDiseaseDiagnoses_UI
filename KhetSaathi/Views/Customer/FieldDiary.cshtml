@@ -1,0 +1,1399 @@
+﻿@{
+    Layout = "_DashboardLayout";
+}
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #4CAF50;
+            --accent-color: #FF9800;
+            --light-color: #F8F9FA;
+            --dark-color: #212529;
+            --text-color: #495057;
+            --white: #FFFFFF;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s ease;
+            --gradient: linear-gradient(135deg, #2E7D32, #4CAF50);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+        }
+        
+        .logo-container i {
+            font-size: 28px;
+            color: var(--accent-color);
+        }
+        
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .back-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Field Diary Section */
+        .diary-section {
+            padding: 120px 0 80px;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1523741545313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -10px;
+            left: 20%;
+            border-radius: 2px;
+        }
+        
+        .section-header h2 span {
+            color: var(--primary-color);
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 25px auto 0;
+            color: var(--text-color);
+        }
+        
+        /* Diary Controls */
+        .diary-controls {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .diary-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .diary-title i {
+            color: var(--primary-color);
+        }
+        
+        .diary-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .diary-btn {
+            padding: 10px 20px;
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .diary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.3);
+        }
+        
+        .diary-btn-outline {
+            padding: 10px 20px;
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .diary-btn-outline:hover {
+            background: rgba(46, 125, 50, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        /* Diary Entries */
+        .diary-entries {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .diary-entry {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .diary-entry:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .diary-entry-header {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 15px 20px;
+            position: relative;
+        }
+        
+        .diary-entry-date {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .diary-entry-day {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .diary-entry-body {
+            padding: 20px;
+        }
+        
+        .diary-entry-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+        
+        .diary-entry-content {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .diary-entry-images {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+        
+        .diary-entry-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            object-fit: cover;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .diary-entry-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .diary-entry-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .diary-entry-crop {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            color: var(--text-color);
+        }
+        
+        .diary-entry-crop i {
+            color: var(--primary-color);
+        }
+        
+        .diary-entry-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .diary-entry-action {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(46, 125, 50, 0.1);
+            color: var(--primary-color);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .diary-entry-action:hover {
+            background: rgba(46, 125, 50, 0.2);
+        }
+        
+        /* Add Entry Button */
+        .add-entry-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .add-entry-btn {
+            padding: 15px 30px;
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(46, 125, 50, 0.2);
+        }
+        
+        .add-entry-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(46, 125, 50, 0.3);
+        }
+        
+        /* Entry Form Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background: var(--white);
+            margin: 50px auto;
+            max-width: 800px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalFadeIn 0.5s ease;
+        }
+        
+        @@keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-header {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 20px 30px;
+            position: relative;
+        }
+        
+        .modal-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 18px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            transition: var(--transition);
+            background: var(--light-color);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: var(--white);
+            box-shadow: 0 0 0 5px rgba(46, 125, 50, 0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .image-upload {
+            border: 2px dashed rgba(46, 125, 50, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 20px;
+        }
+        
+        .image-upload:hover {
+            border-color: var(--primary-color);
+            background: rgba(46, 125, 50, 0.05);
+        }
+        
+        .image-upload-icon {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .image-upload-text {
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+        
+        .image-upload-subtext {
+            font-size: 14px;
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+        
+        #imageInput {
+            display: none;
+        }
+        
+        .image-preview {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .preview-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            object-fit: cover;
+            position: relative;
+        }
+        
+        .preview-image-remove {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 24px;
+            height: 24px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #F44336;
+            font-size: 12px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: flex-end;
+        }
+        
+        .form-btn {
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .form-btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+        }
+        
+        .form-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+        }
+        
+        .form-btn-secondary {
+            background: transparent;
+            color: var(--text-color);
+            border: none;
+        }
+        
+        .form-btn-secondary:hover {
+            color: var(--dark-color);
+        }
+        
+        /* Filter Section */
+        .filter-section {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .filter-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-header i {
+            color: var(--primary-color);
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .filter-option {
+            padding: 8px 16px;
+            background: rgba(46, 125, 50, 0.1);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-option:hover,
+        .filter-option.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(46, 125, 50, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--primary-color);
+            margin: 0 auto 15px;
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 70px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 90%, rgba(76, 175, 80, 0.2) 0%, transparent 60%);
+            z-index: 1;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .footer-logo .logo-container {
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-logo p {
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        
+        .footer-links h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+            color: var(--white);
+        }
+        
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .footer-links a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            bottom: -2px;
+            left: 0;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+        
+        .footer-links a:hover::before {
+            width: 100%;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 16px;
+            opacity: 0.7;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Responsive Styles */
+        @@media (max-width: 992px) {
+            .diary-entries {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .stats-section {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @@media (max-width: 768px) {
+            .diary-controls {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .diary-actions {
+                margin-top: 15px;
+                width: 100%;
+                justify-content: flex-start;
+            }
+            
+            .section-header h2 {
+                font-size: 30px;
+            }
+            
+            .filter-options {
+                justify-content: flex-start;
+            }
+        }
+        
+        @@media (max-width: 576px) {
+            .section-header h2 {
+                font-size: 26px;
+            }
+            
+            .diary-entries {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                margin: 20px;
+                border-radius: 15px;
+            }
+            
+            .modal-header {
+                padding: 15px 20px;
+            }
+            
+            .modal-title {
+                font-size: 20px;
+            }
+            
+            .modal-body {
+                padding: 20px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+
+  
+    
+    <!-- Field Diary Section -->
+    <section class="diary-section pt-3">
+        <div class="container">
+            <div class="section-header">
+                <h2>Field <span>Diary</span></h2>
+                <p>Record your daily farming activities, track crop progress, and maintain a digital journal of your agricultural practices</p>
+            </div>
+            
+            <!-- Stats Section -->
+            <div class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="stat-value">42</div>
+                    <div class="stat-label">Total Entries</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Active Crops</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-value">18</div>
+                    <div class="stat-label">Days This Month</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-value">85%</div>
+                    <div class="stat-label">Crop Growth</div>
+                </div>
+            </div>
+            
+            <!-- Diary Controls -->
+            <div class="diary-controls">
+                <h3 class="diary-title">
+                    <i class="fas fa-book"></i> My Field Diary
+                </h3>
+                
+                <div class="diary-actions">
+                    <button class="diary-btn">
+                        <i class="fas fa-filter"></i> Filter
+                    </button>
+                    <button class="diary-btn-outline">
+                        <i class="fas fa-sort"></i> Sort
+                    </button>
+                    <button class="diary-btn-outline">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <h3 class="filter-header">
+                    <i class="fas fa-filter"></i> Filter by Crop
+                </h3>
+                
+                <div class="filter-options">
+                    <div class="filter-option active">All Crops</div>
+                    <div class="filter-option">Wheat</div>
+                    <div class="filter-option">Rice</div>
+                    <div class="filter-option">Cotton</div>
+                    <div class="filter-option">Sugarcane</div>
+                    <div class="filter-option">Maize</div>
+                    <div class="filter-option">Vegetables</div>
+                </div>
+            </div>
+            
+            <!-- Diary Entries -->
+            <div class="diary-entries" id="diaryEntries">
+                <div class="diary-entry" data-crop="wheat">
+                    <div class="diary-entry-header">
+                        <div class="diary-entry-date">October 15, 2023</div>
+                        <div class="diary-entry-day">Sunday</div>
+                    </div>
+                    <div class="diary-entry-body">
+                        <h4 class="diary-entry-title">First Irrigation after Sowing</h4>
+                        <p class="diary-entry-content">Applied first round of irrigation to the newly sown wheat field. Used sprinkler system for even distribution. Soil moisture level is now optimal for germination.</p>
+                        <div class="diary-entry-images">
+                            <img src="https://images.unsplash.com/photo-1596591606878-8a421935c9dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Irrigation" class="diary-entry-image">
+                            <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Sprinkler" class="diary-entry-image">
+                        </div>
+                        <div class="diary-entry-footer">
+                            <div class="diary-entry-crop">
+                                <i class="fas fa-seedling"></i> Wheat
+                            </div>
+                            <div class="diary-entry-actions">
+                                <button class="diary-entry-action">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="diary-entry-action">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="diary-entry" data-crop="rice">
+                    <div class="diary-entry-header">
+                        <div class="diary-entry-date">October 14, 2023</div>
+                        <div class="diary-entry-day">Saturday</div>
+                    </div>
+                    <div class="diary-entry-body">
+                        <h4 class="diary-entry-title">Fertilizer Application</h4>
+                        <p class="diary-entry-content">Applied basal dose of NPK fertilizer to the rice field. Used recommended dosage based on soil test results. Noted slight yellowing in some plants, which might indicate nitrogen deficiency.</p>
+                        <div class="diary-entry-images">
+                            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Fertilizer" class="diary-entry-image">
+                        </div>
+                        <div class="diary-entry-footer">
+                            <div class="diary-entry-crop">
+                                <i class="fas fa-seedling"></i> Rice
+                            </div>
+                            <div class="diary-entry-actions">
+                                <button class="diary-entry-action">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="diary-entry-action">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="diary-entry" data-crop="cotton">
+                    <div class="diary-entry-header">
+                        <div class="diary-entry-date">October 13, 2023</div>
+                        <div class="diary-entry-day">Friday</div>
+                    </div>
+                    <div class="diary-entry-body">
+                        <h4 class="diary-entry-title">Pest Control Measures</h4>
+                        <p class="diary-entry-content">Noticed early signs of aphid infestation in cotton crop. Applied neem oil solution as organic pesticide. Will monitor closely over the next few days for effectiveness.</p>
+                        <div class="diary-entry-images">
+                            <img src="https://images.unsplash.com/photo-1596591606878-8a421935c9dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Pest Control" class="diary-entry-image">
+                            <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Aphids" class="diary-entry-image">
+                        </div>
+                        <div class="diary-entry-footer">
+                            <div class="diary-entry-crop">
+                                <i class="fas fa-seedling"></i> Cotton
+                            </div>
+                            <div class="diary-entry-actions">
+                                <button class="diary-entry-action">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="diary-entry-action">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="diary-entry" data-crop="sugarcane">
+                    <div class="diary-entry-header">
+                        <div class="diary-entry-date">October 12, 2023</div>
+                        <div class="diary-entry-day">Thursday</div>
+                    </div>
+                    <div class="diary-entry-body">
+                        <h4 class="diary-entry-title">Growth Monitoring</h4>
+                        <p class="diary-entry-content">Measured height of sugarcane plants. Average height is now 45cm, which is above expected for this stage. Noted good color and health of the crop. No signs of pest or disease.</p>
+                        <div class="diary-entry-images">
+                            <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Sugarcane" class="diary-entry-image">
+                        </div>
+                        <div class="diary-entry-footer">
+                            <div class="diary-entry-crop">
+                                <i class="fas fa-seedling"></i> Sugarcane
+                            </div>
+                            <div class="diary-entry-actions">
+                                <button class="diary-entry-action">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="diary-entry-action">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="diary-entry" data-crop="maize">
+                    <div class="diary-entry-header">
+                        <div class="diary-entry-date">October 11, 2023</div>
+                        <div class="diary-entry-day">Wednesday</div>
+                    </div>
+                    <div class="diary-entry-body">
+                        <h4 class="diary-entry-title">Weed Management</h4>
+                        <p class="diary-entry-content">Performed manual weeding in maize field. Removed competing weeds around the base of plants. Applied mulch to suppress further weed growth. Soil moisture is adequate.</p>
+                        <div class="diary-entry-images">
+                            <img src="https://images.unsplash.com/photo-1598918211916-4b814b1b2c0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Weeding" class="diary-entry-image">
+                            <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Maize" class="diary-entry-image">
+                        </div>
+                        <div class="diary-entry-footer">
+                            <div class="diary-entry-crop">
+                                <i class="fas fa-seedling"></i> Maize
+                            </div>
+                            <div class="diary-entry-actions">
+                                <button class="diary-entry-action">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="diary-entry-action">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="diary-entry" data-crop="vegetables">
+                    <div class="diary-entry-header">
+                        <div class="diary-entry-date">October 10, 2023</div>
+                        <div class="diary-entry-day">Tuesday</div>
+                    </div>
+                    <div class="diary-entry-body">
+                        <h4 class="diary-entry-title">Harvesting Tomatoes</h4>
+                        <p class="diary-entry-content">First batch of tomatoes ready for harvest. Picked ripe tomatoes carefully to avoid damage. Estimated yield is better than last season. Quality is excellent with good color and size.</p>
+                        <div class="diary-entry-images">
+                            <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Tomatoes" class="diary-entry-image">
+                            <img src="https://images.unsplash.com/photo-1549060139-88cf7887e46a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Harvest" class="diary-entry-image">
+                        </div>
+                        <div class="diary-entry-footer">
+                            <div class="diary-entry-crop">
+                                <i class="fas fa-seedling"></i> Vegetables
+                            </div>
+                            <div class="diary-entry-actions">
+                                <button class="diary-entry-action">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="diary-entry-action">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Add Entry Button -->
+            <div class="add-entry-container">
+                <button class="add-entry-btn" id="addEntryBtn">
+                    <i class="fas fa-plus"></i> Add New Entry
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Entry Form Modal -->
+    <div class="modal" id="entryModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Add New Diary Entry</h3>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <form id="entryForm">
+                    <div class="form-group">
+                        <label for="entryDate">Date</label>
+                        <input type="date" id="entryDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="entryTitle">Title</label>
+                        <input type="text" id="entryTitle" placeholder="Enter a title for your entry" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="entryCrop">Crop</label>
+                        <select id="entryCrop" required>
+                            <option value="">Select Crop</option>
+                            <option value="wheat">Wheat</option>
+                            <option value="rice">Rice</option>
+                            <option value="cotton">Cotton</option>
+                            <option value="sugarcane">Sugarcane</option>
+                            <option value="maize">Maize</option>
+                            <option value="vegetables">Vegetables</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="entryActivity">Activity Type</label>
+                        <select id="entryActivity" required>
+                            <option value="">Select Activity</option>
+                            <option value="sowing">Sowing/Planting</option>
+                            <option value="irrigation">Irrigation</option>
+                            <option value="fertilizer">Fertilizer Application</option>
+                            <option value="pest-control">Pest Control</option>
+                            <option value="weeding">Weeding</option>
+                            <option value="monitoring">Growth Monitoring</option>
+                            <option value="harvesting">Harvesting</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="entryDescription">Description</label>
+                        <textarea id="entryDescription" placeholder="Describe the activity, observations, and results" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Upload Images</label>
+                        <div class="image-upload" id="imageUpload">
+                            <i class="fas fa-cloud-upload-alt image-upload-icon"></i>
+                            <p class="image-upload-text">Click to upload images</p>
+                            <p class="image-upload-subtext">JPG, PNG up to 5MB each</p>
+                            <input type="file" id="imageInput" multiple accept="image/*">
+                        </div>
+                        <div class="image-preview" id="imagePreview"></div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="form-btn form-btn-secondary" id="cancelBtn">Cancel</button>
+                        <button type="submit" class="form-btn form-btn-primary">Save Entry</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Modal functionality
+            const addEntryBtn = document.getElementById('addEntryBtn');
+            const entryModal = document.getElementById('entryModal');
+            const modalClose = document.getElementById('modalClose');
+            const cancelBtn = document.getElementById('cancelBtn');
+            const entryForm = document.getElementById('entryForm');
+            const imageUpload = document.getElementById('imageUpload');
+            const imageInput = document.getElementById('imageInput');
+            const imagePreview = document.getElementById('imagePreview');
+            
+            // Open modal
+            addEntryBtn.addEventListener('click', function() {
+                entryModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Close modal
+            modalClose.addEventListener('click', closeModal);
+            cancelBtn.addEventListener('click', closeModal);
+            
+            function closeModal() {
+                entryModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                entryForm.reset();
+                imagePreview.innerHTML = '';
+            }
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === entryModal) {
+                    closeModal();
+                }
+            });
+            
+            // Image upload
+            imageUpload.addEventListener('click', function() {
+                imageInput.click();
+            });
+            
+            imageInput.addEventListener('change', function() {
+                const files = this.files;
+                imagePreview.innerHTML = '';
+                
+                if (files.length > 0) {
+                    for (let i = 0; i < files.length; i++) {
+                        const file = files[i];
+                        
+                        if (file.type.startsWith('image/')) {
+                            const reader = new FileReader();
+                            
+                            reader.onload = function(e) {
+                                const imageElement = document.createElement('div');
+                                imageElement.className = 'preview-image';
+                                imageElement.innerHTML = `
+                                    <img src="${e.target.result}" alt="Preview">
+                                    <div class="preview-image-remove">
+                                        <i class="fas fa-times"></i>
+                                    </div>
+                                `;
+                                
+                                // Add remove functionality
+                                const removeBtn = imageElement.querySelector('.preview-image-remove');
+                                removeBtn.addEventListener('click', function() {
+                                    imageElement.remove();
+                                });
+                                
+                                imagePreview.appendChild(imageElement);
+                            }
+                            
+                            reader.readAsDataURL(file);
+                        }
+                    }
+                }
+            });
+            
+            // Form submission
+            entryForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const date = document.getElementById('entryDate').value;
+                const title = document.getElementById('entryTitle').value;
+                const crop = document.getElementById('entryCrop').value;
+                const activity = document.getElementById('entryActivity').value;
+                const description = document.getElementById('entryDescription').value;
+                
+                // Create new entry element
+                const newEntry = document.createElement('div');
+                newEntry.className = 'diary-entry';
+                newEntry.setAttribute('data-crop', crop);
+                
+                // Get day of week
+                const entryDate = new Date(date);
+                const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                const dayName = days[entryDate.getDay()];
+                
+                newEntry.innerHTML = `
+                    <div class="diary-entry-header">
+                        <div class="diary-entry-date">${date}</div>
+                        <div class="diary-entry-day">${dayName}</div>
+                    </div>
+                    <div class="diary-entry-body">
+                        <h4 class="diary-entry-title">${title}</h4>
+                        <p class="diary-entry-content">${description}</p>
+                        <div class="diary-entry-images">
+                            ${imagePreview.innerHTML}
+                        </div>
+                        <div class="diary-entry-footer">
+                            <div class="diary-entry-crop">
+                                <i class="fas fa-seedling"></i> ${crop.charAt(0).toUpperCase() + crop.slice(1)}
+                            </div>
+                            <div class="diary-entry-actions">
+                                <button class="diary-entry-action">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="diary-entry-action">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Add to entries container
+                const diaryEntries = document.getElementById('diaryEntries');
+                diaryEntries.insertBefore(newEntry, diaryEntries.firstChild);
+                
+                // Close modal
+                closeModal();
+                
+                // Show success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'success-message';
+                successMessage.textContent = 'Diary entry added successfully!';
+                successMessage.style.padding = '15px';
+                successMessage.style.backgroundColor = 'rgba(76, 175, 80, 0.1)';
+                successMessage.style.color = 'var(--primary-color)';
+                successMessage.style.borderRadius = '10px';
+                successMessage.style.marginTop = '20px';
+                successMessage.style.textAlign = 'center';
+                
+                document.querySelector('.add-entry-container').appendChild(successMessage);
+                
+                // Remove success message after 3 seconds
+                setTimeout(() => {
+                    successMessage.remove();
+                }, 3000);
+                
+                // Scroll to new entry
+                newEntry.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Filter functionality
+            const filterOptions = document.querySelectorAll('.filter-option');
+            const diaryEntriesAll = document.querySelectorAll('.diary-entry');
+            
+            filterOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove active class from all options
+                    filterOptions.forEach(opt => opt.classList.remove('active'));
+                    
+                    // Add active class to clicked option
+                    this.classList.add('active');
+                    
+                    // Get selected crop
+                    const selectedCrop = this.textContent.toLowerCase();
+                    
+                    // Show/hide entries based on filter
+                    diaryEntriesAll.forEach(entry => {
+                        if (selectedCrop === 'all crops' || entry.getAttribute('data-crop') === selectedCrop) {
+                            entry.style.display = 'block';
+                        } else {
+                            entry.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Entry action buttons
+            const actionButtons = document.querySelectorAll('.diary-entry-action');
+            
+            actionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    
+                    if (icon.classList.contains('fa-edit')) {
+                        alert('Edit functionality would be implemented here. This would allow farmers to modify their diary entries.');
+                    } else if (icon.classList.contains('fa-share')) {
+                        alert('Share functionality would be implemented here. This would allow farmers to share their diary entries with other farmers or experts.');
+                    }
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                
+                if (window.scrollY > 100) {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.05)';
+                }
+            });
+        });
+    </script>

@@ -1,0 +1,1369 @@
+﻿@{
+    Layout = "_DashboardLayout";
+}
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #4CAF50;
+            --accent-color: #FF9800;
+            --light-color: #F8F9FA;
+            --dark-color: #212529;
+            --text-color: #495057;
+            --white: #FFFFFF;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s ease;
+            --gradient: linear-gradient(135deg, #2E7D32, #4CAF50);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+        }
+        
+        .logo-container i {
+            font-size: 28px;
+            color: var(--accent-color);
+        }
+        
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .back-link:hover {  
+            color: var(--secondary-color);
+        }
+        
+        /* Mandi Rates Section */
+        .mandi-section {
+            padding: 120px 0 80px;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1586201375761-b8996a4077fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -10px;
+            left: 20%;
+            border-radius: 2px;
+        }
+        
+        .section-header h2 span {
+            color: var(--primary-color);
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 25px auto 0;
+            color: var(--text-color);
+        }
+        
+        /* Tabs */
+        .tabs-container {
+            max-width: 900px;
+            margin: 0 auto 40px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .tab {
+            padding: 15px 30px;
+            font-weight: 600;
+            color: var(--text-color);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .tab:hover {
+            color: var(--primary-color);
+        }
+        
+        .tab.active {
+            color: var(--primary-color);
+        }
+        
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient);
+            bottom: -2px;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Search and Filter */
+        .search-filter-container {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .search-filter-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .search-box {
+            flex: 1;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 2px solid rgba(0, 0, 0, 0.05);
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 5px rgba(46, 125, 50, 0.1);
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        .filter-select {
+            flex: 1;
+        }
+        
+        .filter-select select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            transition: var(--transition);
+            background: var(--light-color);
+        }
+        
+        .filter-select select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: var(--white);
+            box-shadow: 0 0 0 5px rgba(46, 125, 50, 0.1);
+        }
+        
+        .date-filter {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .date-filter input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+        
+        .date-filter input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: var(--white);
+        }
+        
+        /* Mandi Rates Table */
+        .rates-container {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+        
+        .rates-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .rates-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .rates-title i {
+            color: var(--primary-color);
+        }
+        
+        .rates-refresh {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .rates-refresh:hover {
+            transform: rotate(180deg);
+        }
+        
+        .rates-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .rates-table th {
+            background: var(--gradient);
+            color: var(--white);
+            text-align: left;
+            padding: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+        
+        .rates-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .rates-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .rates-table tr:nth-child(even) {
+            background: rgba(0, 0, 0, 0.01);
+        }
+        
+        .rates-table tr:hover {
+            background: rgba(46, 125, 50, 0.05);
+        }
+        
+        .price-change {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+        }
+        
+        .price-up {
+            color: #4CAF50;
+        }
+        
+        .price-down {
+            color: #F44336;
+        }
+        
+        .price-stable {
+            color: var(--accent-color);
+        }
+        
+        /* Price Prediction */
+        .prediction-container {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .prediction-form {
+            margin-bottom: 30px;
+        }
+        
+        .prediction-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .prediction-title i {
+            color: var(--primary-color);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            flex: 1;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            transition: var(--transition);
+            background: var(--light-color);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: var(--white);
+            box-shadow: 0 0 0 5px rgba(46, 125, 50, 0.1);
+        }
+        
+        .predict-btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto 0;
+            padding: 15px;
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .predict-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+        }
+        
+        .prediction-result {
+            display: none;
+            background: rgba(46, 125, 50, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid var(--primary-color);
+        }
+        
+        .prediction-result h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+        
+        .prediction-chart {
+            height: 250px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .prediction-chart-placeholder {
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            font-style: italic;
+        }
+        
+        .prediction-insights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .insight-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .insight-card h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+        
+        .insight-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .insight-label {
+            font-size: 14px;
+            color: var(--text-color);
+        }
+        
+        /* Market Insights */
+        .insights-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .insight-box {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .insight-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .insight-box-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .insight-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .insight-icon.primary {
+            background: rgba(46, 125, 50, 0.1);
+            color: var(--primary-color);
+        }
+        
+        .insight-icon.accent {
+            background: rgba(255, 152, 0, 0.1);
+            color: var(--accent-color);
+        }
+        
+        .insight-icon.danger {
+            background: rgba(244, 67, 54, 0.1);
+            color: #F44336;
+        }
+        
+        .insight-box h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            color: var(--dark-color);
+        }
+        
+        .insight-box p {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .insight-box .trend {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .action-btn {
+            padding: 12px 25px;
+            background: var(--white);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .action-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 70px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 90%, rgba(76, 175, 80, 0.2) 0%, transparent 60%);
+            z-index: 1;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .footer-logo .logo-container {
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-logo p {
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        
+        .footer-links h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+            color: var(--white);
+        }
+        
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .footer-links a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            bottom: -2px;
+            left: 0;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+        
+        .footer-links a:hover::before {
+            width: 100%;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 16px;
+            opacity: 0.7;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Responsive Styles */
+        @@media (max-width: 992px) {
+            .insights-container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .prediction-insights {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+        
+        @@media (max-width: 768px) {
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+            
+            .search-filter-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .section-header h2 {
+                font-size: 30px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @@media (max-width: 576px) {
+            .section-header h2 {
+                font-size: 26px;
+            }
+            
+            .rates-container {
+                padding: 15px;
+            }
+            
+            .rates-table {
+                font-size: 14px;
+            }
+            
+            .rates-table th,
+            .rates-table td {
+                padding: 10px;
+            }
+            
+            .prediction-container {
+                padding: 15px;
+            }
+            
+            .insights-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    
+    <!-- Mandi Rates & Price Prediction Section -->
+    <section class="mandi-section pt-2">
+        <div class="container">
+            <div class="section-header">
+                <h2>Mandi Rates & <span>Price Prediction</span></h2>
+                <p>Check current market prices and predict future price trends for your crops</p>
+            </div>
+            
+            <div class="tabs-container">
+                <div class="tabs">
+                    <div class="tab active" data-tab="mandi-rates">Mandi Rates</div>
+                    <div class="tab" data-tab="price-prediction">Price Prediction</div>
+                </div>
+                
+                <!-- Mandi Rates Tab -->
+                <div class="tab-content active" id="mandi-rates">
+                    <div class="search-filter-container">
+                        <div class="search-filter-row">
+                            <div class="search-box">
+                                <input type="text" class="search-input" placeholder="Search for crops or mandis...">
+                                <button class="search-btn"><i class="fas fa-search"></i></button>
+                            </div>
+                            <div class="filter-select">
+                                <select>
+                                    <option>All States</option>
+                                    <option>Andhra Pradesh</option>
+                                    <option>Bihar</option>
+                                    <option>Gujarat</option>
+                                    <option>Haryana</option>
+                                    <option>Karnataka</option>
+                                    <option>Maharashtra</option>
+                                    <option>Punjab</option>
+                                    <option>Rajasthan</option>
+                                    <option>Uttar Pradesh</option>
+                                    <option>West Bengal</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="date-filter">
+                            <input type="date" id="dateFrom" value="2023-10-01">
+                            <input type="date" id="dateTo" value="2023-10-15">
+                        </div>
+                    </div>
+                    
+                    <div class="rates-container">
+                        <div class="rates-header">
+                            <h3 class="rates-title">
+                                <i class="fas fa-chart-line"></i> Current Mandi Rates
+                            </h3>
+                            <button class="rates-refresh" id="ratesRefresh">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                        </div>
+                        
+                        <table class="rates-table">
+                            <thead>
+                                <tr>
+                                    <th>Crop</th>
+                                    <th>Mandi</th>
+                                    <th>District</th>
+                                    <th>Current Price (₹/quintal)</th>
+                                    <th>Previous Price (₹/quintal)</th>
+                                    <th>Change</th>
+                                    <th>Last Updated</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Wheat</td>
+                                    <td>Delhi</td>
+                                    <td>Central Delhi</td>
+                                    <td>2,150</td>
+                                    <td>2,100</td>
+                                    <td>
+                                        <span class="price-change price-up">
+                                            <i class="fas fa-arrow-up"></i> 2.38%
+                                        </span>
+                                    </td>
+                                    <td>Today, 10:30 AM</td>
+                                </tr>
+                                <tr>
+                                    <td>Rice</td>
+                                    <td>Kolkata</td>
+                                    <td>North 24 Parganas</td>
+                                    <td>1,950</td>
+                                    <td>1,980</td>
+                                    <td>
+                                        <span class="price-change price-down">
+                                            <i class="fas fa-arrow-down"></i> 1.52%
+                                        </span>
+                                    </td>
+                                    <td>Today, 09:45 AM</td>
+                                </tr>
+                                <tr>
+                                    <td>Cotton</td>
+                                    <td>Mumbai</td>
+                                    <td>Mumbai Suburban</td>
+                                    <td>6,200</td>
+                                    <td>6,200</td>
+                                    <td>
+                                        <span class="price-change price-stable">
+                                            <i class="fas fa-minus"></i> 0.00%
+                                        </span>
+                                    </td>
+                                    <td>Today, 11:15 AM</td>
+                                </tr>
+                                <tr>
+                                    <td>Sugarcane</td>
+                                    <td>Lucknow</td>
+                                    <td>Lucknow</td>
+                                    <td>280</td>
+                                    <td>275</td>
+                                    <td>
+                                        <span class="price-change price-up">
+                                            <i class="fas fa-arrow-up"></i> 1.82%
+                                        </span>
+                                    </td>
+                                    <td>Today, 08:30 AM</td>
+                                </tr>
+                                <tr>
+                                    <td>Maize</td>
+                                    <td>Chennai</td>
+                                    <td>Chennai</td>
+                                    <td>1,750</td>
+                                    <td>1,720</td>
+                                    <td>
+                                        <span class="price-change price-up">
+                                            <i class="fas fa-arrow-up"></i> 1.74%
+                                        </span>
+                                    </td>
+                                    <td>Today, 10:00 AM</td>
+                                </tr>
+                                <tr>
+                                    <td>Mustard</td>
+                                    <td>Jaipur</td>
+                                    <td>Jaipur</td>
+                                    <td>4,800</td>
+                                    <td>4,750</td>
+                                    <td>
+                                        <span class="price-change price-up">
+                                            <i class="fas fa-arrow-up"></i> 1.05%
+                                        </span>
+                                    </td>
+                                    <td>Today, 09:15 AM</td>
+                                </tr>
+                                <tr>
+                                    <td>Gram</td>
+                                    <td>Indore</td>
+                                    <td>Indore</td>
+                                    <td>4,500</td>
+                                    <td>4,600</td>
+                                    <td>
+                                        <span class="price-change price-down">
+                                            <i class="fas fa-arrow-down"></i> 2.17%
+                                        </span>
+                                    </td>
+                                    <td>Today, 11:30 AM</td>
+                                </tr>
+                                <tr>
+                                    <td>Soybean</td>
+                                    <td>Nagpur</td>
+                                    <td>Nagpur</td>
+                                    <td>3,900</td>
+                                    <td>3,850</td>
+                                    <td>
+                                        <span class="price-change price-up">
+                                            <i class="fas fa-arrow-up"></i> 1.30%
+                                        </span>
+                                    </td>
+                                    <td>Today, 10:45 AM</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="insights-container">
+                        <div class="insight-box">
+                            <div class="insight-box-header">
+                                <div class="insight-icon primary">
+                                    <i class="fas fa-arrow-trend-up"></i>
+                                </div>
+                                <h4>Top Gainer</h4>
+                            </div>
+                            <p>Wheat prices have shown the highest increase this week, driven by strong demand from flour mills and limited supply in key markets.</p>
+                            <div class="trend price-up">
+                                <i class="fas fa-arrow-up"></i> 5.2% weekly gain
+                            </div>
+                        </div>
+                        
+                        <div class="insight-box">
+                            <div class="insight-box-header">
+                                <div class="insight-icon danger">
+                                    <i class="fas fa-arrow-trend-down"></i>
+                                </div>
+                                <h4>Top Loser</h4>
+                            </div>
+                            <p>Rice prices have declined due to increased supply from the harvest season and lower export demand.</p>
+                            <div class="trend price-down">
+                                <i class="fas fa-arrow-down"></i> 3.8% weekly loss
+                            </div>
+                        </div>
+                        
+                        <div class="insight-box">
+                            <div class="insight-box-header">
+                                <div class="insight-icon accent">
+                                    <i class="fas fa-balance-scale"></i>
+                                </div>
+                                <h4>Market Trend</h4>
+                            </div>
+                            <p>Overall agricultural commodity markets are stable with slight bullish momentum expected in the coming weeks due to festive season demand.</p>
+                            <div class="trend price-up">
+                                <i class="fas fa-arrow-up"></i> Slight upward trend
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Price Prediction Tab -->
+                <div class="tab-content" id="price-prediction">
+                    <div class="prediction-container">
+                        <h3 class="prediction-title">
+                            <i class="fas fa-chart-pie"></i> Price Prediction
+                        </h3>
+                        
+                        <form class="prediction-form" id="predictionForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="crop-select">Select Crop</label>
+                                    <select id="crop-select" required>
+                                        <option value="">Select Crop</option>
+                                        <option value="wheat">Wheat</option>
+                                        <option value="rice">Rice</option>
+                                        <option value="cotton">Cotton</option>
+                                        <option value="sugarcane">Sugarcane</option>
+                                        <option value="maize">Maize</option>
+                                        <option value="mustard">Mustard</option>
+                                        <option value="gram">Gram</option>
+                                        <option value="soybean">Soybean</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="state-select">Select State</label>
+                                    <select id="state-select" required>
+                                        <option value="">Select State</option>
+                                        <option value="andhra">Andhra Pradesh</option>
+                                        <option value="bihar">Bihar</option>
+                                        <option value="gujarat">Gujarat</option>
+                                        <option value="haryana">Haryana</option>
+                                        <option value="karnataka">Karnataka</option>
+                                        <option value="maharashtra">Maharashtra</option>
+                                        <option value="punjab">Punjab</option>
+                                        <option value="rajasthan">Rajasthan</option>
+                                        <option value="uttar">Uttar Pradesh</option>
+                                        <option value="west">West Bengal</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="prediction-period">Prediction Period</label>
+                                    <select id="prediction-period" required>
+                                        <option value="">Select Period</option>
+                                        <option value="1-week">1 Week</option>
+                                        <option value="2-weeks">2 Weeks</option>
+                                        <option value="1-month">1 Month</option>
+                                        <option value="3-months">3 Months</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="current-price">Current Price (₹/quintal)</label>
+                                    <input type="number" id="current-price" min="0" step="10" required>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="predict-btn">Predict Price</button>
+                        </form>
+                        
+                        <div class="prediction-result" id="predictionResult">
+                            <h4>Price Prediction for <span id="predictedCrop">Wheat</span></h4>
+                            
+                            <div class="prediction-chart">
+                                <div class="prediction-chart-placeholder">
+                                    Price trend chart would be displayed here
+                                </div>
+                            </div>
+                            
+                            <div class="prediction-insights">
+                                <div class="insight-card">
+                                    <h5>Predicted Price</h5>
+                                    <div class="insight-value" id="predictedPrice">₹2,250</div>
+                                    <div class="insight-label">per quintal</div>
+                                </div>
+                                
+                                <div class="insight-card">
+                                    <h5>Confidence</h5>
+                                    <div class="insight-value" id="predictionConfidence">85%</div>
+                                    <div class="insight-label">accuracy</div>
+                                </div>
+                                
+                                <div class="insight-card">
+                                    <h5>Price Change</h5>
+                                    <div class="insight-value price-up" id="priceChange">+4.65%</div>
+                                    <div class="insight-label">expected</div>
+                                </div>
+                                
+                                <div class="insight-card">
+                                    <h5>Key Factors</h5>
+                                    <div class="insight-value" id="keyFactors">3</div>
+                                    <div class="insight-label">impacting price</div>
+                                </div>
+                            </div>
+                            
+                            <div class="insight-box" style="margin-top: 20px;">
+                                <h4 style="margin-bottom: 15px; color: var(--dark-color);">Factors Influencing Price</h4>
+                                <ul style="list-style: none; padding-left: 0;">
+                                    <li style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-check-circle" style="color: var(--secondary-color);"></i>
+                                        <span>Seasonal demand increase due to upcoming festivals</span>
+                                    </li>
+                                    <li style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-check-circle" style="color: var(--secondary-color);"></i>
+                                        <span>Limited supply from major producing regions</span>
+                                    </li>
+                                    <li style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-check-circle" style="color: var(--secondary-color);"></i>
+                                        <span>Government procurement at minimum support price</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="action-btn">
+                    <i class="fas fa-download"></i> Download Report
+                </button>
+                <button class="action-btn">
+                    <i class="fas fa-bell"></i> Set Price Alert
+                </button>
+                <button class="action-btn">
+                    <i class="fas fa-share-alt"></i> Share
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Rates refresh button
+            const ratesRefresh = document.getElementById('ratesRefresh');
+            ratesRefresh.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                icon.classList.add('fa-spin');
+                
+                setTimeout(() => {
+                    icon.classList.remove('fa-spin');
+                    // In a real app, this would fetch new rate data
+                }, 1000);
+            });
+            
+            // Price prediction form
+            const predictionForm = document.getElementById('predictionForm');
+            const predictionResult = document.getElementById('predictionResult');
+            
+            predictionForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const crop = document.getElementById('crop-select').value;
+                const state = document.getElementById('state-select').value;
+                const period = document.getElementById('prediction-period').value;
+                const currentPrice = parseFloat(document.getElementById('current-price').value);
+                
+                // Simulate processing
+                const submitBtn = this.querySelector('.predict-btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Predicting...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    // Update prediction result based on inputs
+                    updatePredictionResult(crop, state, period, currentPrice);
+                    
+                    // Show result
+                    predictionResult.style.display = 'block';
+                    
+                    // Reset button
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    
+                    // Scroll to result
+                    predictionResult.scrollIntoView({ behavior: 'smooth' });
+                }, 2000);
+            });
+            
+            // Update prediction result based on inputs
+            function updatePredictionResult(crop, state, period, currentPrice) {
+                // Calculate predicted price based on inputs
+                let predictedPrice = currentPrice;
+                let priceChange = 0;
+                let confidence = 80;
+                
+                // Adjust based on crop
+                if (crop === 'wheat') {
+                    predictedPrice = currentPrice * 1.05; // 5% increase
+                    priceChange = 5;
+                    confidence = 85;
+                } else if (crop === 'rice') {
+                    predictedPrice = currentPrice * 0.97; // 3% decrease
+                    priceChange = -3;
+                    confidence = 82;
+                } else if (crop === 'cotton') {
+                    predictedPrice = currentPrice * 1.08; // 8% increase
+                    priceChange = 8;
+                    confidence = 78;
+                } else if (crop === 'sugarcane') {
+                    predictedPrice = currentPrice * 1.03; // 3% increase
+                    priceChange = 3;
+                    confidence = 80;
+                } else if (crop === 'maize') {
+                    predictedPrice = currentPrice * 1.04; // 4% increase
+                    priceChange = 4;
+                    confidence = 83;
+                } else if (crop === 'mustard') {
+                    predictedPrice = currentPrice * 1.06; // 6% increase
+                    priceChange = 6;
+                    confidence = 81;
+                } else if (crop === 'gram') {
+                    predictedPrice = currentPrice * 1.02; // 2% increase
+                    priceChange = 2;
+                    confidence = 84;
+                } else if (crop === 'soybean') {
+                    predictedPrice = currentPrice * 1.07; // 7% increase
+                    priceChange = 7;
+                    confidence = 79;
+                }
+                
+                // Adjust based on period
+                if (period === '1-week') {
+                    predictedPrice = currentPrice + (predictedPrice - currentPrice) * 0.2; // 20% of total change
+                    confidence -= 5;
+                } else if (period === '2-weeks') {
+                    predictedPrice = currentPrice + (predictedPrice - currentPrice) * 0.5; // 50% of total change
+                    confidence -= 3;
+                } else if (period === '3-months') {
+                    predictedPrice = currentPrice + (predictedPrice - currentPrice) * 1.5; // 150% of total change
+                    confidence -= 8;
+                }
+                
+                // Update DOM elements
+                document.getElementById('predictedCrop').textContent = crop.charAt(0).toUpperCase() + crop.slice(1);
+                document.getElementById('predictedPrice').textContent = '₹' + Math.round(predictedPrice);
+                document.getElementById('predictionConfidence').textContent = Math.max(70, confidence) + '%';
+                
+                const priceChangeElement = document.getElementById('priceChange');
+                if (priceChange >= 0) {
+                    priceChangeElement.textContent = '+' + priceChange.toFixed(2) + '%';
+                    priceChangeElement.className = 'insight-value price-up';
+                } else {
+                    priceChangeElement.textContent = priceChange.toFixed(2) + '%';
+                    priceChangeElement.className = 'insight-value price-down';
+                }
+            }
+            
+            // Search functionality
+            const searchInput = document.querySelector('.search-input');
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const tableRows = document.querySelectorAll('.rates-table tbody tr');
+                
+                tableRows.forEach(row => {
+                    const crop = row.cells[0].textContent.toLowerCase();
+                    const mandi = row.cells[1].textContent.toLowerCase();
+                    const district = row.cells[2].textContent.toLowerCase();
+                    
+                    if (crop.includes(searchTerm) || mandi.includes(searchTerm) || district.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Action buttons
+            const actionButtons = document.querySelectorAll('.action-btn');
+            actionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const buttonText = this.textContent.trim();
+                    
+                    if (buttonText.includes('Download')) {
+                        alert('Download functionality would be implemented here. This would generate a PDF of the market rates and price predictions.');
+                    } else if (buttonText.includes('Set Price Alert')) {
+                        alert('Price alert functionality would be implemented here. This would allow farmers to set alerts for when prices reach a certain level.');
+                    } else if (buttonText.includes('Share')) {
+                        alert('Share functionality would be implemented here. This would allow sharing the market data with other farmers or experts.');
+                    }
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                
+                if (window.scrollY > 100) {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.05)';
+                }
+            });
+        });
+    </script>
