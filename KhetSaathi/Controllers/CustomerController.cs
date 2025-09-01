@@ -15,6 +15,8 @@ namespace KhetSaathi.Controllers
         }
         public IActionResult LeafDiseaseDetection()
         {
+
+
             return View();
         }
         public IActionResult TreatmentGuide()
