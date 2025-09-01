@@ -13,6 +13,7 @@ namespace KhetSaathi.Controllers
         {
 
             return View();
+
         }
         public IActionResult LeafDiseaseDetection()
         {
