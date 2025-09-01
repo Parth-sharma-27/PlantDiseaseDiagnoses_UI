@@ -19,7 +19,11 @@ namespace KhetSaathi.Controllers
            
         }
 
-     
+        public IActionResult Login()
+        {
+            return View();
+        }
+
         public IActionResult SignUp()
         {
             return View();

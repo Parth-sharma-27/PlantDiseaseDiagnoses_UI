@@ -20,8 +20,52 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 6.0
 build_property.EnableCodeStyleSeverity = 
 
+[D:/KNewProject/PlantDiseaseDiagnoses_UI-main/PlantDiseaseDiagnoses_UI-main/KhetSaathi/Views/Customer/CropRecommendation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQ3JvcFJlY29tbWVuZGF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KNewProject/PlantDiseaseDiagnoses_UI-main/PlantDiseaseDiagnoses_UI-main/KhetSaathi/Views/Customer/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcRGFzaGJvYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KNewProject/PlantDiseaseDiagnoses_UI-main/PlantDiseaseDiagnoses_UI-main/KhetSaathi/Views/Customer/FertilizerIrrigationAdvisor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcRmVydGlsaXplcklycmlnYXRpb25BZHZpc29yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KNewProject/PlantDiseaseDiagnoses_UI-main/PlantDiseaseDiagnoses_UI-main/KhetSaathi/Views/Customer/FieldDiary.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcRmllbGREaWFyeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KNewProject/PlantDiseaseDiagnoses_UI-main/PlantDiseaseDiagnoses_UI-main/KhetSaathi/Views/Customer/LeafDiseaseDetection.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcTGVhZkRpc2Vhc2VEZXRlY3Rpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KNewProject/PlantDiseaseDiagnoses_UI-main/PlantDiseaseDiagnoses_UI-main/KhetSaathi/Views/Customer/LocalVoiceQA.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcTG9jYWxWb2ljZVFBLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KNewProject/PlantDiseaseDiagnoses_UI-main/PlantDiseaseDiagnoses_UI-main/KhetSaathi/Views/Customer/MandiRatesAndPrediction.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcTWFuZGlSYXRlc0FuZFByZWRpY3Rpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KNewProject/PlantDiseaseDiagnoses_UI-main/PlantDiseaseDiagnoses_UI-main/KhetSaathi/Views/Customer/OfflineLowDataUI.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcT2ZmbGluZUxvd0RhdGFVSS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KNewProject/PlantDiseaseDiagnoses_UI-main/PlantDiseaseDiagnoses_UI-main/KhetSaathi/Views/Customer/TreatmentGuide.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcVHJlYXRtZW50R3VpZGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KNewProject/PlantDiseaseDiagnoses_UI-main/PlantDiseaseDiagnoses_UI-main/KhetSaathi/Views/Customer/WeatherAlerts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcV2VhdGhlckFsZXJ0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/KNewProject/PlantDiseaseDiagnoses_UI-main/PlantDiseaseDiagnoses_UI-main/KhetSaathi/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KNewProject/PlantDiseaseDiagnoses_UI-main/PlantDiseaseDiagnoses_UI-main/KhetSaathi/Views/Home/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/KNewProject/PlantDiseaseDiagnoses_UI-main/PlantDiseaseDiagnoses_UI-main/KhetSaathi/Views/Home/Privacy.cshtml]

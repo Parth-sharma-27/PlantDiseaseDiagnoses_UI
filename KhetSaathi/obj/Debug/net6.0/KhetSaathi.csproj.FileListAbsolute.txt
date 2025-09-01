@@ -36,3 +36,42 @@ D:\New Web Application\KhetSaathi\KhetSaathi\bin\Debug\net6.0\Microsoft.Extensio
 D:\New Web Application\KhetSaathi\KhetSaathi\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
 D:\New Web Application\KhetSaathi\KhetSaathi\obj\Debug\net6.0\KhetSaathi.csproj.AssemblyReference.cache
 D:\New Web Application\KhetSaathi\KhetSaathi\obj\Debug\net6.0\KhetSaathi.csproj.Up2Date
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\bin\Debug\net6.0\appsettings.Development.json
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\bin\Debug\net6.0\appsettings.json
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\bin\Debug\net6.0\KhetSaathi.staticwebassets.runtime.json
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\bin\Debug\net6.0\KhetSaathi.staticwebassets.endpoints.json
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\bin\Debug\net6.0\KhetSaathi.exe
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\bin\Debug\net6.0\KhetSaathi.deps.json
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\bin\Debug\net6.0\KhetSaathi.runtimeconfig.json
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\bin\Debug\net6.0\KhetSaathi.dll
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\bin\Debug\net6.0\KhetSaathi.pdb
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\bin\Debug\net6.0\Microsoft.Extensions.Localization.dll
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\bin\Debug\net6.0\Microsoft.Extensions.Localization.Abstractions.dll
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\KhetSaathi.csproj.AssemblyReference.cache
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\KhetSaathi.GeneratedMSBuildEditorConfig.editorconfig
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\KhetSaathi.AssemblyInfoInputs.cache
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\KhetSaathi.AssemblyInfo.cs
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\KhetSaathi.csproj.CoreCompileInputs.cache
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\KhetSaathi.MvcApplicationPartsAssemblyInfo.cache
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\KhetSaathi.RazorAssemblyInfo.cache
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\KhetSaathi.RazorAssemblyInfo.cs
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\KhetSaathi.sourcelink.json
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\scopedcss\bundle\KhetSaathi.styles.css
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\scopedcss\projectbundle\KhetSaathi.bundle.scp.css
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\staticwebassets.build.json
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\staticwebassets.build.json.cache
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\staticwebassets.development.json
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\staticwebassets.build.endpoints.json
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\staticwebassets.upToDateCheck.txt
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\KhetSaathi.csproj.Up2Date
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\KhetSaathi.dll
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\refint\KhetSaathi.dll
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\KhetSaathi.pdb
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\KhetSaathi.genruntimeconfig.cache
+D:\KNewProject\PlantDiseaseDiagnoses_UI-main\PlantDiseaseDiagnoses_UI-main\KhetSaathi\obj\Debug\net6.0\ref\KhetSaathi.dll
