@@ -11,6 +11,7 @@ namespace KhetSaathi.Controllers
         }
         public IActionResult LocalVoiceQA()
         {
+
             return View();
         }
         public IActionResult LeafDiseaseDetection()
