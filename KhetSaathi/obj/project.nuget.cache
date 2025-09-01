@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AA1TW/fkEaA=",
+  "dgSpecHash": "/n1+l48ugeQ=",
   "success": true,
-  "projectFilePath": "D:\\New Web Application\\KhetSaathi\\KhetSaathi\\KhetSaathi.csproj",
+  "projectFilePath": "D:\\KNewProject\\PlantDiseaseDiagnoses_UI-main\\PlantDiseaseDiagnoses_UI-main\\KhetSaathi\\KhetSaathi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.8\\microsoft.extensions.dependencyinjection.abstractions.9.0.8.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.extensions.localization\\9.0.8\\microsoft.extensions.localization.9.0.8.nupkg.sha512",
