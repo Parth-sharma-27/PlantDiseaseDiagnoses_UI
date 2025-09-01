@@ -2,111 +2,889 @@
     Layout = "_BlankLayout";
 }
 
-<section class="auth-form-section">
-    <div class="form-container">
-        <h2>Sign Up</h2>
-        <form method="post" asp-controller="Account" asp-action="Signup">
-            <div class="form-group">
-                <label>Full Name:</label>
-                <input type="text" name="Name" class="form-control" required />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #4CAF50;
+            --accent-color: #FF9800;
+            --light-color: #F8F9FA;
+            --dark-color: #212529;
+            --text-color: #495057;
+            --white: #FFFFFF;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s ease;
+            --gradient: linear-gradient(135deg, #2E7D32, #4CAF50);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+            header .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px 20px;
+            }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+        }
+
+            .logo-container i {
+                font-size: 28px;
+                color: var(--accent-color);
+            }
+
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+            .back-link:hover {
+                color: var(--secondary-color);
+            }
+
+        /* Signup Section */
+        .signup-section {
+            padding: 120px 0 80px;
+            margin-top: 80px;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1600486517927-9b3c1a5b7824?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .signup-container {
+            display: flex;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .signup-info {
+            flex: 1;
+            padding: 60px;
+            background: var(--gradient);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .signup-info::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: radial-gradient(circle at 80% 80%, rgba(255, 152, 0, 0.3) 0%, transparent 60%);
+                z-index: 1;
+            }
+
+        .signup-info-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .signup-info h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            margin-bottom: 25px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .signup-info p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .benefits-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+            .benefits-list li {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                margin-bottom: 20px;
+                font-size: 16px;
+            }
+
+            .benefits-list i {
+                font-size: 22px;
+                color: var(--accent-color);
+            }
+
+        .signup-form {
+            flex: 1;
+            padding: 50px;
+        }
+
+            .signup-form h2 {
+                font-family: 'Montserrat', sans-serif;
+                font-size: 32px;
+                color: var(--dark-color);
+                margin-bottom: 10px;
+            }
+
+            .signup-form p {
+                color: var(--text-color);
+                margin-bottom: 30px;
+            }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+            .form-row .form-group {
+                flex: 1;
+            }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            transition: var(--transition);
+            background: var(--light-color);
+        }
+
+            .form-group input:focus,
+            .form-group select:focus,
+            .form-group textarea:focus {
+                outline: none;
+                border-color: var(--primary-color);
+                background: var(--white);
+                box-shadow: 0 0 0 5px rgba(46, 125, 50, 0.1);
+            }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .password-toggle {
+            position: relative;
+        }
+
+            .password-toggle i {
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+                color: var(--text-color);
+            }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+            .form-check input {
+                width: 18px;
+                height: 18px;
+                accent-color: var(--primary-color);
+            }
+
+            .form-check label {
+                margin-bottom: 0;
+                font-weight: normal;
+                color: var(--text-color);
+            }
+
+            .form-check a {
+                color: var(--primary-color);
+                text-decoration: none;
+            }
+
+                .form-check a:hover {
+                    text-decoration: underline;
+                }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-family: 'Montserrat', sans-serif;
+            width: 100%;
+        }
+
+            .btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.2);
+                z-index: -1;
+                transition: var(--transition);
+                border-radius: 50px;
+            }
+
+            .btn:hover::before {
+                opacity: 0;
+            }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+        }
+
+            .btn-primary:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+            }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            color: var(--text-color);
+        }
+
+            .divider::before,
+            .divider::after {
+                content: '';
+                flex: 1;
+                height: 1px;
+                background: rgba(0, 0, 0, 0.1);
+            }
+
+            .divider span {
+                padding: 0 15px;
+                font-size: 14px;
+            }
+
+        .social-signup {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .social-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            background: var(--white);
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+            .social-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .social-btn i {
+                font-size: 18px;
+            }
+
+        .google-btn {
+            color: #DB4437;
+        }
+
+        .facebook-btn {
+            color: #4267B2;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 25px;
+            color: var(--text-color);
+        }
+
+            .login-link a {
+                color: var(--primary-color);
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+                .login-link a:hover {
+                    text-decoration: underline;
+                }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 70px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+            footer::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: radial-gradient(circle at 10% 90%, rgba(76, 175, 80, 0.2) 0%, transparent 60%);
+                z-index: 1;
+            }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+            .footer-logo .logo-container {
+                margin-bottom: 20px;
+                color: var(--white);
+            }
+
+            .footer-logo p {
+                opacity: 0.8;
+                line-height: 1.8;
+                margin-bottom: 25px;
+            }
+
+        .footer-links h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+            color: var(--white);
+        }
+
+            .footer-links h4::after {
+                content: '';
+                position: absolute;
+                width: 50px;
+                height: 3px;
+                background: var(--gradient);
+                bottom: 0;
+                left: 0;
+                border-radius: 2px;
+            }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+            position: relative;
+        }
+
+            .footer-links a::before {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                background: var(--accent-color);
+                bottom: -2px;
+                left: 0;
+                transition: var(--transition);
+            }
+
+            .footer-links a:hover {
+                color: var(--white);
+                padding-left: 5px;
+            }
+
+                .footer-links a:hover::before {
+                    width: 100%;
+                }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 16px;
+            opacity: 0.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Responsive Styles */
+        @@media (max-width: 992px) {
+            .signup-container {
+                flex-direction: column;
+            }
+
+            .signup-info {
+                padding: 40px;
+            }
+
+            .signup-form {
+                padding: 40px;
+            }
+        }
+
+        @@media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .social-signup {
+                flex-direction: column;
+            }
+
+            .signup-info h2 {
+                font-size: 28px;
+            }
+
+            .signup-form h2 {
+                font-size: 26px;
+            }
+        }
+
+        @@media (max-width: 576px) {
+            .signup-info {
+                padding: 30px 20px;
+            }
+
+            .signup-form {
+                padding: 30px 20px;
+            }
+
+            .signup-info h2 {
+                font-size: 24px;
+            }
+
+            .signup-form h2 {
+                font-size: 22px;
+            }
+
+            .signup-info p {
+                font-size: 16px;
+            }
+
+            .benefits-list li {
+                font-size: 15px;
+            }
+        }
+    </style>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <div class="logo-container">
+                        <i class="fas fa-seedling"></i>
+                        <span>Khetsaathi</span>
+                    </div>
+                </a>
             </div>
+            <a href="/Home/Index" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </header>
 
-            <div class="form-group">
-                <label>Email:</label>
-                <input type="email" name="Email" class="form-control" required />
+    <!-- Signup Section -->
+    <section class="signup-section pt-3">
+        <div class="container">
+            <div class="signup-container">
+                <div class="signup-info">
+                    <div class="signup-info-content">
+                        <h2>Join Khetsaathi Today</h2>
+                        <p>Create your account to access real-time agricultural information, market prices, weather updates, and expert advice.</p>
+
+                        <ul class="benefits-list">
+                            <li><i class="fas fa-check-circle"></i> Free access to weather forecasts</li>
+                            <li><i class="fas fa-check-circle"></i> Real-time market prices</li>
+                            <li><i class="fas fa-check-circle"></i> Expert crop advisory</li>
+                            <li><i class="fas fa-check-circle"></i> Connect with farming community</li>
+                            <li><i class="fas fa-check-circle"></i> Access to financial services</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="signup-form">
+                    <h2>Create Account</h2>
+                    <p>Fill in the details below to get started</p>
+
+                    <form id="signupForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mobile">Mobile Number</label>
+                            <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <select id="country" name="country" required>
+                                    <option value="">Select Country</option>
+                                    <option value="india">India</option>
+                                    <option value="usa">United States</option>
+                                    <option value="uk">United Kingdom</option>
+                                    <option value="australia">Australia</option>
+                                    <option value="canada">Canada</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <select id="state" name="state" required>
+                                    <option value="">Select State</option>
+                                    <option value="andhra">Andhra Pradesh</option>
+                                    <option value="assam">Assam</option>
+                                    <option value="bihar">Bihar</option>
+                                    <option value="gujarat">Gujarat</option>
+                                    <option value="haryana">Haryana</option>
+                                    <option value="karnataka">Karnataka</option>
+                                    <option value="kerala">Kerala</option>
+                                    <option value="maharashtra">Maharashtra</option>
+                                    <option value="punjab">Punjab</option>
+                                    <option value="rajasthan">Rajasthan</option>
+                                    <option value="tamil">Tamil Nadu</option>
+                                    <option value="uttar">Uttar Pradesh</option>
+                                    <option value="west">West Bengal</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" placeholder="Enter your city" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="farmSize">Farm Size (in acres)</label>
+                            <input type="number" id="farmSize" name="farmSize" placeholder="Enter your farm size" min="0" step="0.1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="primaryCrop">Primary Crop</label>
+                            <select id="primaryCrop" name="primaryCrop">
+                                <option value="">Select Primary Crop</option>
+                                <option value="wheat">Wheat</option>
+                                <option value="rice">Rice</option>
+                                <option value="cotton">Cotton</option>
+                                <option value="sugarcane">Sugarcane</option>
+                                <option value="maize">Maize</option>
+                                <option value="pulses">Pulses</option>
+                                <option value="vegetables">Vegetables</option>
+                                <option value="fruits">Fruits</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <div class="password-toggle">
+                                <input type="password" id="password" name="password" placeholder="Create a password" required>
+                                <i class="fas fa-eye" id="togglePassword"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <div class="password-toggle">
+                                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                                <i class="fas fa-eye" id="toggleConfirmPassword"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">I agree to the <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a></label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Create Account</button>
+                    </form>
+
+                    <div class="divider">
+                        <span>or sign up with</span>
+                    </div>
+
+                    <div class="social-signup">
+                        <a href="#" class="social-btn google-btn">
+                            <i class="fab fa-google"></i> Google
+                        </a>
+                        <a href="#" class="social-btn facebook-btn">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                    </div>
+
+                    <div class="login-link">
+                        Already have an account? <a href="/Home/Login">Log In</a>
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="form-group">
-                <label>Password:</label>
-                <input type="password" name="Password" class="form-control" required />
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-container">
+                        <i class="fas fa-seedling"></i>
+                        <span>Khetsaathi</span>
+                    </div>
+                    <p>Empowering farmers with digital solutions for sustainable agriculture.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Farmers Guide</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                        <li><a href="#">Partner Program</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Agri Tech Park, Ghaziabad</li>
+                        <li><i class="fas fa-phone-alt"></i> +912323232230</li>
+                        <li><i class="fas fa-envelope"></i> support@khetsaathi.com</li>
+                    </ul>
+                </div>
             </div>
-
-            <!-- Country Dropdown (Fixed India) -->
-            <div class="form-group">
-                <label>Country:</label>
-                <select id="country" name="Country" class="form-control" required>
-                    <option value="India" selected>India</option>
-                </select>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Khetsaathi. All rights reserved.</p>
             </div>
-
-            <!-- State Dropdown -->
-            <div class="form-group">
-                <label>State:</label>
-                <select id="state" name="State" class="form-control" required></select>
-            </div>
-
-            <!-- City Dropdown -->
-            <div class="form-group">
-                <label>City:</label>
-                <select id="city" name="City" class="form-control" required></select>
-            </div>
-
-            <!-- Village Dropdown -->
-            <div class="form-group">
-                <label>Village:</label>
-                <select id="village" name="Village" class="form-control" required></select>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Sign Up</button>
-        </form>
-    </div>
-</section>
-
-@section Scripts {
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        </div>
+    </footer>
 
     <script>
-        $(document).ready(function () {
-            loadStates();
+        document.addEventListener('DOMContentLoaded', function () {
+            // Password visibility toggle
+            const togglePassword = document.getElementById('togglePassword');
+            const password = document.getElementById('password');
+            const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+            const confirmPassword = document.getElementById('confirmPassword');
 
-            $('#state').change(function () {
-                var state = $(this).val();
-                if (state) loadCities(state);
-                else {
-                    $('#city').html('<option value="">--Select City--</option>');
-                    $('#village').html('<option value="">--Select Village--</option>');
+            togglePassword.addEventListener('click', function () {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+
+            toggleConfirmPassword.addEventListener('click', function () {
+                const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+                confirmPassword.setAttribute('type', type);
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+
+            // Form submission
+            const signupForm = document.getElementById('signupForm');
+            signupForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Get form values
+                const firstName = document.getElementById('firstName').value;
+                const lastName = document.getElementById('lastName').value;
+                const email = document.getElementById('email').value;
+                const mobile = document.getElementById('mobile').value;
+                const country = document.getElementById('country').value;
+                const state = document.getElementById('state').value;
+                const city = document.getElementById('city').value;
+                const farmSize = document.getElementById('farmSize').value;
+                const primaryCrop = document.getElementById('primaryCrop').value;
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const terms = document.getElementById('terms').checked;
+
+                // Form validation
+                if (firstName === '' || lastName === '' || email === '' || mobile === '' ||
+                    country === '' || state === '' || city === '' || password === '' || confirmPassword === '') {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match.');
+                    return;
+                }
+
+                if (!terms) {
+                    alert('Please agree to the terms and conditions.');
+                    return;
+                }
+
+                // Here you would typically send the form data to a server
+                // For demonstration, we'll just show a success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'success-message';
+                successMessage.textContent = 'Account created successfully! Redirecting to login page...';
+                successMessage.style.padding = '15px';
+                successMessage.style.backgroundColor = '#4CAF50';
+                successMessage.style.color = 'white';
+                successMessage.style.borderRadius = '5px';
+                successMessage.style.marginTop = '20px';
+                successMessage.style.textAlign = 'center';
+
+                // Add success message
+                this.appendChild(successMessage);
+
+                // Clear the form
+                this.reset();
+
+                // Remove success message and redirect after 3 seconds
+                setTimeout(() => {
+                    successMessage.remove();
+                    window.location.href = 'login.html';
+                }, 3000);
+            });
+
+            // Header scroll effect
+            window.addEventListener('scroll', function () {
+                const header = document.querySelector('header');
+
+                if (window.scrollY > 100) {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.05)';
                 }
             });
-
-            $('#city').change(function () {
-                var city = $(this).val();
-                var state = $('#state').val();
-                if (city && state) loadVillages(state, city);
-                else $('#village').html('<option value="">--Select Village--</option>');
-            });
-
-            function loadStates() {
-               $.getJSON('/Home/states', { country: 'India' }, function(data) {
-                    let options = '<option value="">--Select State--</option>';
-                    $.each(data, function (i, state) {
-                        options += `<option value="${state}">${state}</option>`;
-                    });
-                    $('#state').html(options);
-                    $('#city').html('<option value="">--Select City--</option>');
-                    $('#village').html('<option value="">--Select Village--</option>');
-                });
-            }
-
-            function loadCities(state) {
-                $.getJSON('/Home/cities', { state: state }, function (data) {
-                    let options = '<option value="">--Select City--</option>';
-                    $.each(data, function (i, city) {
-                        options += `<option value="${city}">${city}</option>`;
-                    });
-                    $('#city').html(options);
-                    $('#village').html('<option value="">--Select Village--</option>');
-                });
-            }
-
-            function loadVillages(state, city) {
-                $.getJSON('/Home/villages', { state: state, city: city }, function (data) {
-                    let options = '<option value="">--Select Village--</option>';
-                    $.each(data, function (i, village) {
-                        options += `<option value="${village}">${village}</option>`;
-                    });
-                    $('#village').html(options);
-                });
-            }
         });
     </script>
-}

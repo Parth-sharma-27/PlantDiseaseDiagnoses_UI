@@ -1,0 +1,1161 @@
+﻿@{
+    Layout = "_DashboardLayout";
+}
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght=700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #4CAF50;
+            --accent-color: #FF9800;
+            --light-color: #F8F9FA;
+            --dark-color: #212529;
+            --text-color: #495057;
+            --white: #FFFFFF;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s ease;
+            --gradient: linear-gradient(135deg, #2E7D32, #4CAF50);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+        }
+        
+        .logo-container i {
+            font-size: 28px;
+            color: var(--accent-color);
+        }
+        
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .back-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Offline Mode Section */
+        .offline-section {
+            padding: 120px 0 80px;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -10px;
+            left: 20%;
+            border-radius: 2px;
+        }
+        
+        .section-header h2 span {
+            color: var(--primary-color);
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 25px auto 0;
+            color: var(--text-color);
+        }
+        
+        /* Connection Status Banner */
+        .connection-banner {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .connection-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .connection-icon.offline {
+            background: rgba(244, 67, 54, 0.1);
+            color: #F44336;
+        }
+        
+        .connection-icon.low-data {
+            background: rgba(255, 152, 0, 0.1);
+            color: var(--accent-color);
+        }
+        
+        .connection-icon.online {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--secondary-color);
+        }
+        
+        .connection-text {
+            flex: 1;
+        }
+        
+        .connection-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+        
+        .connection-description {
+            font-size: 14px;
+            color: var(--text-color);
+        }
+        
+        .connection-action {
+            padding: 8px 16px;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .connection-action:hover {
+            background: var(--secondary-color);
+        }
+        
+        /* Offline Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .feature-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gradient);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(46, 125, 50, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+        
+        .feature-description {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .feature-status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .status-text {
+            font-size: 14px;
+            color: var(--text-color);
+        }
+        
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .status-badge.available {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--secondary-color);
+        }
+        
+        .status-badge.partial {
+            background: rgba(255, 152, 0, 0.1);
+            color: var(--accent-color);
+        }
+        
+        .feature-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            background: rgba(46, 125, 50, 0.1);
+            color: var(--primary-color);
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+        
+        .feature-btn:hover {
+            background: rgba(46, 125, 50, 0.2);
+        }
+        
+        /* Data Saver Settings */
+        .data-saver-container {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+        
+        .data-saver-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .data-saver-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 152, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--accent-color);
+        }
+        
+        .data-saver-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: var(--dark-color);
+        }
+        
+        .data-saver-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .data-option {
+            background: rgba(46, 125, 50, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            transition: var(--transition);
+        }
+        
+        .data-option:hover {
+            background: rgba(46, 125, 50, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .data-option-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .data-option-title {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 25px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            top: 2.5px;
+            left: 2.5px;
+            width: 20px;
+            height: 20px;
+            background: var(--white);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .toggle-switch input:checked + .toggle-slider {
+            transform: translateX(25px);
+        }
+        
+        .toggle-switch input:checked ~ .toggle-switch {
+            background: var(--primary-color);
+        }
+        
+        .toggle-switch.checked {
+            background: var(--primary-color);
+        }
+        
+        .toggle-switch.checked .toggle-slider {
+            transform: translateX(25px);
+        }
+        
+        .data-option-description {
+            font-size: 14px;
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+        
+        /* Downloadable Content */
+        .download-container {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+        
+        .download-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: var(--dark-color);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .download-header i {
+            color: var(--primary-color);
+        }
+        
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .download-item {
+            background: rgba(46, 125, 50, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .download-item:hover {
+            background: rgba(46, 125, 50, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .download-icon {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .download-title {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+        
+        .download-size {
+            font-size: 14px;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.3);
+        }
+        
+        .download-btn:disabled {
+            background: var(--text-color);
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Tips Section */
+        .tips-container {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tips-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: var(--dark-color);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tips-header i {
+            color: var(--primary-color);
+        }
+        
+        .tips-list {
+            list-style: none;
+        }
+        
+        .tips-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        .tips-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--secondary-color);
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .action-btn {
+            padding: 12px 25px;
+            background: var(--white);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .action-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 70px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 90%, rgba(76, 175, 80, 0.2) 0%, transparent 60%);
+            z-index: 1;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .footer-logo .logo-container {
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-logo p {
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        
+        .footer-links h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+            color: var(--white);
+        }
+        
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .footer-links a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            bottom: -2px;
+            left: 0;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+        
+        .footer-links a:hover::before {
+            width: 100%;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 16px;
+            opacity: 0.7;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Responsive Styles */
+        @@media (max-width: 992px) {
+            .features-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .data-saver-options {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .download-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @@media (max-width: 768px) {
+            .connection-banner {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .section-header h2 {
+                font-size: 30px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @@media (max-width: 576px) {
+            .section-header h2 {
+                font-size: 26px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .data-saver-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .download-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .connection-banner {
+                padding: 15px;
+            }
+        }
+    </style>
+
+
+    <!-- Offline Mode Section -->
+    <section class="offline-section pt-3">
+        <div class="container">
+            <div class="section-header">
+                <h2>Offline Mode & <span>Low Data Usage</span></h2>
+                <p>Access essential farming information even without internet connection and minimize data usage</p>
+            </div>
+            
+            <!-- Connection Status Banner -->
+            <div class="connection-banner">
+                <div class="connection-status">
+                    <div class="connection-icon offline">
+                        <i class="fas fa-wifi-slash"></i>
+                    </div>
+                    <div class="connection-text">
+                        <div class="connection-title">You're Offline</div>
+                        <div class="connection-description">Limited connectivity detected. Offline features are now active.</div>
+                    </div>
+                </div>
+                <button class="connection-action" id="retryConnection">Retry Connection</button>
+            </div>
+            
+            <!-- Offline Features Grid -->
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="feature-title">Farming Guide</h3>
+                    <p class="feature-description">Access comprehensive farming guides and best practices for various crops and techniques.</p>
+                    <div class="feature-status">
+                        <span class="status-text">Content available</span>
+                        <span class="status-badge available">Available</span>
+                    </div>
+                    <button class="feature-btn">Open Guide</button>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-disease"></i>
+                    </div>
+                    <h3 class="feature-title">Disease Database</h3>
+                    <p class="feature-description">Identify and treat common plant diseases with our offline disease database.</p>
+                    <div class="feature-status">
+                        <span class="status-text">Images and text</span>
+                        <span class="status-badge available">Available</span>
+                    </div>
+                    <button class="feature-btn">Browse Diseases</button>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 class="feature-title">Remedy Guide</h3>
+                    <p class="feature-description">Find natural and chemical remedies for common plant problems.</p>
+                    <div class="feature-status">
+                        <span class="status-text">Text only</span>
+                        <span class="status-badge available">Available</span>
+                    </div>
+                    <button class="feature-btn">View Remedies</button>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3 class="feature-title">Dosage Calculator</h3>
+                    <p class="feature-description">Calculate the correct dosage of fertilizers and treatments for your crops.</p>
+                    <div class="feature-status">
+                        <span class="status-text">Full functionality</span>
+                        <span class="status-badge available">Available</span>
+                    </div>
+                    <button class="feature-btn">Open Calculator</button>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Market Prices</h3>
+                    <p class="feature-description">View cached market prices for your crops from the last successful sync.</p>
+                    <div class="feature-status">
+                        <span class="status-text">Last updated 2 days ago</span>
+                        <span class="status-badge partial">Partial</span>
+                    </div>
+                    <button class="feature-btn">View Prices</button>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <h3 class="feature-title">Weather Forecast</h3>
+                    <p class="feature-description">Access cached weather information and forecasts for your location.</p>
+                    <div class="feature-status">
+                        <span class="status-text">Last updated 6 hours ago</span>
+                        <span class="status-badge partial">Partial</span>
+                    </div>
+                    <button class="feature-btn">View Weather</button>
+                </div>
+            </div>
+            
+            <!-- Data Saver Settings -->
+            <div class="data-saver-container">
+                <div class="data-saver-header">
+                    <div class="data-saver-icon">
+                        <i class="fas fa-compress-arrows-alt"></i>
+                    </div>
+                    <h2 class="data-saver-title">Data Saver Settings</h2>
+                </div>
+                
+                <div class="data-saver-options">
+                    <div class="data-option">
+                        <div class="data-option-header">
+                            <div class="data-option-title">Low Image Quality</div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="lowImageQuality" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <p class="data-option-description">Reduce image quality to save data. Images will load faster but with lower resolution.</p>
+                    </div>
+                    
+                    <div class="data-option">
+                        <div class="data-option-header">
+                            <div class="data-option-title">Disable Auto-play Videos</div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="disableAutoplay" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <p class="data-option-description">Prevent videos from playing automatically to save data.</p>
+                    </div>
+                    
+                    <div class="data-option">
+                        <div class="data-option-header">
+                            <div class="data-option-title">Text-Only Mode</div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="textOnlyMode">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <p class="data-option-description">Load text content only without images or videos.</p>
+                    </div>
+                    
+                    <div class="data-option">
+                        <div class="data-option-header">
+                            <div class="data-option-title">Offline Maps</div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="offlineMaps" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <p class="data-option-description">Download map areas for offline use when navigating to markets or suppliers.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Downloadable Content -->
+            <div class="download-container">
+                <h3 class="download-header">
+                    <i class="fas fa-download"></i> Download for Offline Use
+                </h3>
+                
+                <div class="download-grid">
+                    <div class="download-item">
+                        <div class="download-icon">
+                            <i class="fas fa-book-reader"></i>
+                        </div>
+                        <h4 class="download-title">Farming Handbook</h4>
+                        <div class="download-size">15 MB</div>
+                        <button class="download-btn">Download</button>
+                    </div>
+                    
+                    <div class="download-item">
+                        <div class="download-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h4 class="download-title">Disease Database</h4>
+                        <div class="download-size">25 MB</div>
+                        <button class="download-btn">Download</button>
+                    </div>
+                    
+                    <div class="download-item">
+                        <div class="download-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h4 class="download-title">Mandi Locations</h4>
+                        <div class="download-size">10 MB</div>
+                        <button class="download-btn">Download</button>
+                    </div>
+                    
+                    <div class="download-item">
+                        <div class="download-icon">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <h4 class="download-title">Regional Languages</h4>
+                        <div class="download-size">5 MB per language</div>
+                        <button class="download-btn">Download</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tips Section -->
+            <div class="tips-container">
+                <h3 class="tips-header">
+                    <i class="fas fa-lightbulb"></i> Tips for Using Khetsaathi Offline
+                </h3>
+                
+                <ul class="tips-list">
+                    <li>Download essential content when you have a good internet connection for offline access later.</li>
+                    <li>Enable data saver mode to reduce data consumption when using mobile data.</li>
+                    <li>Sync your data regularly when connected to ensure you have the latest information.</li>
+                    <li>Use the text-only mode when you have very limited data or slow connection.</li>
+                    <li>Bookmark important pages for quick access when offline.</li>
+                    <li>Check for updates to offline content whenever you have a stable connection.</li>
+                </ul>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="action-btn">
+                    <i class="fas fa-sync-alt"></i> Sync Now
+                </button>
+                <button class="action-btn">
+                    <i class="fas fa-cog"></i> Settings
+                </button>
+                <button class="action-btn">
+                    <i class="fas fa-question-circle"></i> Help
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+ 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Connection status detection
+            const connectionBanner = document.querySelector('.connection-banner');
+            const connectionIcon = connectionBanner.querySelector('.connection-icon');
+            const connectionTitle = connectionBanner.querySelector('.connection-title');
+            const connectionDescription = connectionBanner.querySelector('.connection-description');
+            const retryButton = document.getElementById('retryConnection');
+            
+            // Check if online/offline
+            function updateConnectionStatus() {
+                if (navigator.onLine) {
+                    connectionIcon.className = 'connection-icon online';
+                    connectionIcon.innerHTML = '<i class="fas fa-wifi"></i>';
+                    connectionTitle.textContent = 'You\'re Online';
+                    connectionDescription.textContent = 'All features are available with full functionality.';
+                    retryButton.textContent = 'Check for Updates';
+                } else {
+                    connectionIcon.className = 'connection-icon offline';
+                    connectionIcon.innerHTML = '<i class="fas fa-wifi-slash"></i>';
+                    connectionTitle.textContent = 'You\'re Offline';
+                    connectionDescription.textContent = 'Limited connectivity detected. Offline features are now active.';
+                    retryButton.textContent = 'Retry Connection';
+                }
+            }
+            
+            // Initial connection status check
+            updateConnectionStatus();
+            
+            // Listen for online/offline events
+            window.addEventListener('online', updateConnectionStatus);
+            window.addEventListener('offline', updateConnectionStatus);
+            
+            // Retry connection button
+            retryButton.addEventListener('click', function() {
+                if (navigator.onLine) {
+                    alert('Checking for updates to offline content...');
+                    // In a real app, this would trigger a sync process
+                } else {
+                    alert('Attempting to reconnect to the internet...');
+                    // In a real app, this might trigger device-specific connection settings
+                }
+            });
+            
+            // Toggle switches for data saver settings
+            const toggleSwitches = document.querySelectorAll('.toggle-switch input');
+            
+            toggleSwitches.forEach(toggle => {
+                toggle.addEventListener('change', function() {
+                    const toggleSwitch = this.parentElement;
+                    
+                    if (this.checked) {
+                        toggleSwitch.classList.add('checked');
+                    } else {
+                        toggleSwitch.classList.remove('checked');
+                    }
+                    
+                    // In a real app, this would save the data saver preferences
+                    console.log(`${this.id} setting changed to: ${this.checked}`);
+                });
+            });
+            
+            // Feature buttons
+            const featureButtons = document.querySelectorAll('.feature-btn');
+            
+            featureButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const featureTitle = this.closest('.feature-card').querySelector('.feature-title').textContent;
+                    
+                    // Simulate opening the feature
+                    alert(`Opening ${featureTitle}... In a real app, this would navigate to the specific feature page.`);
+                });
+            });
+            
+            // Download buttons
+            const downloadButtons = document.querySelectorAll('.download-btn');
+            
+            downloadButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const downloadTitle = this.closest('.download-item').querySelector('.download-title').textContent;
+                    
+                    // Simulate download
+                    this.textContent = 'Downloading...';
+                    this.disabled = true;
+                    
+                    setTimeout(() => {
+                        this.textContent = 'Download';
+                        this.disabled = false;
+                        alert(`${downloadTitle} downloaded successfully! In a real app, this would download the content for offline use.`);
+                    }, 2000);
+                });
+            });
+            
+            // Action buttons
+            const actionButtons = document.querySelectorAll('.action-btn');
+            
+            actionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const buttonText = this.textContent.trim();
+                    
+                    if (buttonText.includes('Sync')) {
+                        alert('Sync functionality would be implemented here. This would update all offline content with the latest information from the server.');
+                    } else if (buttonText.includes('Settings')) {
+                        alert('Settings page would be implemented here. This would allow for more detailed customization of offline and data saver options.');
+                    } else if (buttonText.includes('Help')) {
+                        alert('Help center would be implemented here. This would provide guidance on using offline features and optimizing data usage.');
+                    }
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                
+                if (window.scrollY > 100) {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.05)';
+                }
+            });
+            
+            // Simulate low data mode
+            function simulateLowDataMode() {
+                // In a real implementation, this would actually reduce data usage
+                console.log('Low data mode activated');
+                
+                // Examples of what would happen in low data mode:
+                // 1. Load lower quality images
+                // 2. Disable auto-playing videos
+                // 3. Prefetch and cache essential content
+                // 4. Compress data before sending/receiving
+            }
+            
+            // Check if user prefers low data mode
+            if ('connection' in navigator) {
+                const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+                
+                if (connection) {
+                    if (connection.saveData) {
+                        simulateLowDataMode();
+                    }
+                    
+                    // Listen for changes to saveData mode
+                    connection.addEventListener('change', function() {
+                        if (connection.saveData) {
+                            simulateLowDataMode();
+                        }
+                    });
+                }
+            }
+        });
+    </script>

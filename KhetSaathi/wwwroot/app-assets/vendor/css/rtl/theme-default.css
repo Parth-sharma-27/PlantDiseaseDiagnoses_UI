@@ -1584,12 +1584,29 @@ li.ui-timepicker-selected,
     background-color: rgba(115, 103, 240, 0.05);
 }
 
-.bg-navbar-theme {
+/*.bg-navbar-theme {*/
     /*background-color: rgba(255, 255, 255, 0.88) !important;*/
     /*background-color: #64c5b1 !important;*/
-    background-color: #03254c !important;
+    /*background-color: #03254c !important;
     color: #444050;
+}*/
+/* Option 1: Darker green */
+/*.bg-navbar-theme {
+    background-color: #1B5E20 !important;
+    color: #fff;
+}*/
+
+/* Option 2: Medium green */
+.bg-navbar-theme {
+    background-color: #388E3C !important;
+    color: #fff;
 }
+
+/* Option 3: Lighter green */
+/*.bg-navbar-theme {
+    background-color: #4CAF50 !important;
+    color: #fff;
+}*/
 
     .bg-navbar-theme .navbar-brand,
     .bg-navbar-theme .navbar-brand a {
@@ -1688,14 +1705,28 @@ li.ui-timepicker-selected,
     -webkit-mask: linear-gradient(#f8f7fa, #f8f7fa 18%, transparent 100%);
     mask: linear-gradient(#f8f7fa, #f8f7fa 18%, transparent 100%);
 }
-
+/* Option 1: Darker green gradient */
+/*.bg-menu-theme {
+    background: linear-gradient(270deg, #1B5E20 0%, #388E3C 100%) !important;
+    color: #444050;
+}
+*/
+/* Option 2: Lighter green gradient */
 .bg-menu-theme {
-    /*background-color: #fff !important;*/
-    /*background: linear-gradient(270deg, #6d7663 0%, #9CAF88 100%) !important;*/
-    background: linear-gradient(270deg, #165c8c 0%, #2E7DB3 100%) !important;
+    background: linear-gradient(270deg, #4CAF50 0%, #8BC34A 100%) !important;
     color: #444050;
 }
 
+/* Option 3: Green with accent color */
+/*.bg-menu-theme {
+    background: linear-gradient(270deg, #2E7D32 0%, #FF9800 100%) !important;
+    color: #444050;
+}
+*/
+/*.bg-menu-theme {
+    background: linear-gradient(270deg, #2E7D32 0%, #4CAF50 100%) !important;
+    color: #fff;*/ /* White text for better contrast */
+/*}*/
     .bg-menu-theme.menu-horizontal {
         background-color: rgba(255, 255, 255, 0.95) !important;
     }

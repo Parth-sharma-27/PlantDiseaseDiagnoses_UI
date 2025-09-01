@@ -18,13 +18,14 @@ namespace KhetSaathi.Controllers
             _logger = logger;
            
         }
-
-     
-        public IActionResult SignUp()
+        public IActionResult SignUp()   
         {
             return View();
         }
-
+        public IActionResult Login()
+        {
+            return View();
+        }
         public IActionResult Index()
         {
             return View();

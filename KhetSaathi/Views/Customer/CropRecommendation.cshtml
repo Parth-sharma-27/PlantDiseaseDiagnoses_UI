@@ -1,0 +1,1123 @@
+﻿@{
+    Layout = "_DashboardLayout";
+}
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #4CAF50;
+            --accent-color: #FF9800;
+            --light-color: #F8F9FA;
+            --dark-color: #212529;
+            --text-color: #495057;
+            --white: #FFFFFF;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s ease;
+            --gradient: linear-gradient(135deg, #2E7D32, #4CAF50);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+        }
+        
+        .logo-container i {
+            font-size: 28px;
+            color: var(--accent-color);
+        }
+        
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .back-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Crop Recommendation Section */
+        .recommendation-section {
+            padding: 120px 0 80px;
+          /*   margin-top: 80px; */
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -10px;
+            left: 20%;
+            border-radius: 2px;
+        }
+        
+        .section-header h2 span {
+            color: var(--primary-color);
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 25px auto 0;
+            color: var(--text-color);
+        }
+        
+        /* Form Styles */
+        .recommendation-form {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        .form-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: var(--dark-color);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            transition: var(--transition);
+            background: var(--light-color);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: var(--white);
+            box-shadow: 0 0 0 5px rgba(46, 125, 50, 0.1);
+        }
+        
+        .calculate-btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 30px auto 0;
+            padding: 15px;
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .calculate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+        }
+        
+        /* Results Container */
+        .results-container {
+            display: none;
+        }
+        
+        .result-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .result-header h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+        
+        .result-header p {
+            color: var(--text-color);
+            font-size: 18px;
+        }
+        
+        .crop-recommendations {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .crop-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .crop-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .crop-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .crop-content {
+            padding: 20px;
+        }
+        
+        .crop-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .match-percentage {
+            background: var(--gradient);
+            color: var(--white);
+            font-size: 14px;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+        
+        .crop-description {
+            color: var(--text-color);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .crop-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .crop-detail {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            color: var(--text-color);
+        }
+        
+        .crop-detail i {
+            color: var(--primary-color);
+        }
+        
+        .crop-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            background: rgba(46, 125, 50, 0.1);
+            color: var(--primary-color);
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .crop-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+        
+        /* Comparison Table */
+        .comparison-container {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+        
+        .comparison-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: var(--dark-color);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        
+        .comparison-table th {
+            background: var(--gradient);
+            color: var(--white);
+            text-align: left;
+            padding: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: rgba(0, 0, 0, 0.01);
+        }
+        
+        /* Additional Info */
+        .info-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .info-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-card h4 i {
+            color: var(--primary-color);
+        }
+        
+        .info-card p {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .info-card ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+        
+        .info-card li {
+            margin-bottom: 8px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .info-card li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--secondary-color);
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .action-btn {
+            padding: 12px 25px;
+            background: var(--white);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .action-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 70px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 90%, rgba(76, 175, 80, 0.2) 0%, transparent 60%);
+            z-index: 1;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .footer-logo .logo-container {
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-logo p {
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        
+        .footer-links h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+            color: var(--white);
+        }
+        
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .footer-links a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            bottom: -2px;
+            left: 0;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+        
+        .footer-links a:hover::before {
+            width: 100%;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 16px;
+            opacity: 0.7;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Responsive Styles */
+        @@media (max-width: 992px) {
+            .crop-recommendations {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @@media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .section-header h2 {
+                font-size: 30px;
+            }
+            
+            .recommendation-form {
+                padding: 20px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .comparison-container {
+                padding: 20px;
+                overflow-x: auto;
+            }
+        }
+        
+        @@media (max-width: 576px) {
+            .section-header h2 {
+                font-size: 26px;
+            }
+            
+            .recommendation-form {
+                padding: 20px;
+            }
+            
+            .crop-recommendations {
+                grid-template-columns: 1fr;
+            }
+            
+            .info-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-table {
+                font-size: 14px;
+            }
+            
+            .comparison-table th,
+            .comparison-table td {
+                padding: 10px;
+            }
+        }
+    </style>
+
+    <!-- Header -->
+
+    
+    <!-- Crop Recommendation Section -->
+    <section class="recommendation-section pt-2">
+        <div class="container">
+            <div class="section-header">
+                <h2>Crop <span>Recommendation</span></h2>
+                <p>Discover the best crops to grow based on your soil type, climate conditions, and location</p>
+            </div>
+            
+            <div class="recommendation-form">
+                <h3 class="form-title">Find Your Perfect Crop</h3>
+                
+                <form id="cropForm">
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <select id="state" required>
+                            <option value="">Select State</option>
+                            <option value="andhra">Andhra Pradesh</option>
+                            <option value="assam">Assam</option>
+                            <option value="bihar">Bihar</option>
+                            <option value="gujarat">Gujarat</option>
+                            <option value="haryana">Haryana</option>
+                            <option value="karnataka">Karnataka</option>
+                            <option value="kerala">Kerala</option>
+                            <option value="maharashtra">Maharashtra</option>
+                            <option value="punjab">Punjab</option>
+                            <option value="rajasthan">Rajasthan</option>
+                            <option value="tamil">Tamil Nadu</option>
+                            <option value="uttar">Uttar Pradesh</option>
+                            <option value="west">West Bengal</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="district">District</label>
+                        <input type="text" id="district" placeholder="Enter your district" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="soil">Soil Type</label>
+                            <select id="soil" required>
+                                <option value="">Select Soil Type</option>
+                                <option value="sandy">Sandy</option>
+                                <option value="loamy">Loamy</option>
+                                <option value="clay">Clay</option>
+                                <option value="silty">Silty</option>
+                                <option value="peaty">Peaty</option>
+                                <option value="chalky">Chalky</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="season">Season</label>
+                            <select id="season" required>
+                                <option value="">Select Season</option>
+                                <option value="kharif">Kharif (Monsoon)</option>
+                                <option value="rabi">Rabi (Winter)</option>
+                                <option value="zaid">Zaid (Summer)</option>
+                                <option value="year-round">Year Round</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="area">Farm Area (in acres)</label>
+                            <input type="number" id="area" min="0.1" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="water">Water Availability</label>
+                            <select id="water" required>
+                                <option value="">Select Water Availability</option>
+                                <option value="high">High (Irrigated)</option>
+                                <option value="medium">Medium (Partial Irrigation)</option>
+                                <option value="low">Low (Rainfed)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="budget">Budget Range (per acre)</label>
+                        <select id="budget" required>
+                            <option value="">Select Budget Range</option>
+                            <option value="low">Low (Below ₹10,000)</option>
+                            <option value="medium">Medium (₹10,000 - ₹25,000)</option>
+                            <option value="high">High (Above ₹25,000)</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="calculate-btn">Get Recommendations</button>
+                </form>
+            </div>
+            
+            <div class="results-container" id="resultsContainer">
+                <div class="result-header">
+                    <h3>Recommended Crops for Your Farm</h3>
+                    <p>Based on your location, soil type, and preferences</p>
+                </div>
+                
+                <div class="crop-recommendations" id="cropRecommendations">
+                    <!-- Crop cards will be dynamically added here -->
+                </div>
+                
+                <div class="comparison-container">
+                    <h3 class="comparison-title">Crop Comparison</h3>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Crop</th>
+                                <th>Yield (per acre)</th>
+                                <th>Profit (per acre)</th>
+                                <th>Water Requirement</th>
+                                <th>Growth Period</th>
+                            </tr>
+                        </thead>
+                        <tbody id="comparisonTableBody">
+                            <!-- Comparison rows will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="info-container">
+                    <div class="info-card">
+                        <h4><i class="fas fa-seedling"></i> Planting Tips</h4>
+                        <p>Follow these guidelines for successful crop establishment:</p>
+                        <ul>
+                            <li>Prepare land thoroughly before planting</li>
+                            <li>Use quality seeds from reliable sources</li>
+                            <li>Follow recommended spacing for optimal growth</li>
+                            <li>Apply basal dose of fertilizer as per soil test</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h4><i class="fas fa-tint"></i> Irrigation Management</h4>
+                        <p>Proper water management is crucial for crop health:</p>
+                        <ul>
+                            <li>Water based on crop growth stage requirements</li>
+                            <li>Use efficient irrigation methods like drip or sprinkler</li>
+                            <li>Monitor soil moisture regularly</li>
+                            <li>Avoid waterlogging to prevent root diseases</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h4><i class="fas fa-flask"></i> Nutrient Management</h4>
+                        <p>Balanced nutrition is key to high yields:</p>
+                        <ul>
+                            <li>Conduct soil testing before planting</li>
+                            <li>Apply fertilizers based on crop requirements</li>
+                            <li>Use organic manure to improve soil health</li>
+                            <li>Follow split application for better nutrient use</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn">
+                        <i class="fas fa-download"></i> Download Report
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-share-alt"></i> Share
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-print"></i> Print
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+ 
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Crop form submission
+            const cropForm = document.getElementById('cropForm');
+            const resultsContainer = document.getElementById('resultsContainer');
+            const cropRecommendations = document.getElementById('cropRecommendations');
+            const comparisonTableBody = document.getElementById('comparisonTableBody');
+            
+            // Crop data
+            const cropData = {
+                'wheat': {
+                    name: 'Wheat',
+                    image: 'https://images.unsplash.com/photo-1598918211916-4b814b1b2c0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+                    description: 'A staple cereal grain rich in carbohydrates and protein. Ideal for Rabi season in well-drained soils.',
+                    details: {
+                        temperature: '15-25°C',
+                        rainfall: '50-100 cm',
+                        harvest: '120-150 days'
+                    },
+                    yield: '25-30 quintals',
+                    profit: '₹20,000-25,000',
+                    water: 'Medium',
+                    period: '120-150 days'
+                },
+                'rice': {
+                    name: 'Rice',
+                    image: 'https://images.unsplash.com/photo-1586201375761-b8996a4077fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+                    description: 'A water-intensive cereal grain that is a staple food for more than half the world\'s population.',
+                    details: {
+                        temperature: '20-35°C',
+                        rainfall: '100-200 cm',
+                        harvest: '110-130 days'
+                    },
+                    yield: '30-40 quintals',
+                    profit: '₹25,000-30,000',
+                    water: 'High',
+                    period: '110-130 days'
+                },
+                'cotton': {
+                    name: 'Cotton',
+                    image: 'https://images.unsplash.com/photo-1596591606878-8a421935c9dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+                    description: 'A fiber crop that produces soft, breathable fabric. Requires warm climate and well-drained soil.',
+                    details: {
+                        temperature: '25-35°C',
+                        rainfall: '50-100 cm',
+                        harvest: '150-180 days'
+                    },
+                    yield: '8-12 quintals',
+                    profit: '₹35,000-45,000',
+                    water: 'Medium',
+                    period: '150-180 days'
+                },
+                'sugarcane': {
+                    name: 'Sugarcane',
+                    image: 'https://images.unsplash.com/photo-1600486517927-9b3c1a5b7824?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+                    description: 'A tall perennial grass used for sugar production. Requires tropical climate and abundant water.',
+                    details: {
+                        temperature: '25-35°C',
+                        rainfall: '100-150 cm',
+                        harvest: '300-360 days'
+                    },
+                    yield: '250-300 quintals',
+                    profit: '₹40,000-50,000',
+                    water: 'High',
+                    period: '300-360 days'
+                },
+                'maize': {
+                    name: 'Maize',
+                    image: 'https://images.unsplash.com/photo-1598972947217-6d7fe5bf8861?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+                    description: 'A versatile cereal crop used for food, fodder, and industrial purposes. Grows well in warm climates.',
+                    details: {
+                        temperature: '20-30°C',
+                        rainfall: '50-100 cm',
+                        harvest: '90-110 days'
+                    },
+                    yield: '20-30 quintals',
+                    profit: '₹18,000-22,000',
+                    water: 'Medium',
+                    period: '90-110 days'
+                },
+                'pulses': {
+                    name: 'Pulses',
+                    image: 'https://images.unsplash.com/photo-1512428843090-9f1b6348d8c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+                    description: 'Nutrient-rich legumes that fix nitrogen in the soil. Ideal for crop rotation and sustainable farming.',
+                    details: {
+                        temperature: '20-30°C',
+                        rainfall: '40-80 cm',
+                        harvest: '80-120 days'
+                    },
+                    yield: '8-15 quintals',
+                    profit: '₹25,000-35,000',
+                    water: 'Low-Medium',
+                    period: '80-120 days'
+                }
+            };
+            
+            cropForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const state = document.getElementById('state').value;
+                const district = document.getElementById('district').value;
+                const soil = document.getElementById('soil').value;
+                const season = document.getElementById('season').value;
+                const area = parseFloat(document.getElementById('area').value);
+                const water = document.getElementById('water').value;
+                const budget = document.getElementById('budget').value;
+                
+                // Simulate processing
+                const submitBtn = this.querySelector('.calculate-btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    // Generate recommendations based on inputs
+                    const recommendations = generateRecommendations(soil, season, water, budget);
+                    
+                    // Update UI with recommendations
+                    displayRecommendations(recommendations);
+                    
+                    // Show results
+                    resultsContainer.style.display = 'block';
+                    
+                    // Reset button
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    
+                    // Scroll to results
+                    resultsContainer.scrollIntoView({ behavior: 'smooth' });
+                }, 2000);
+            });
+            
+            // Generate crop recommendations based on inputs
+            function generateRecommendations(soil, season, water, budget) {
+                // Define suitability scores for each crop based on inputs
+                const suitabilityScores = {};
+                
+                // Initialize scores
+                Object.keys(cropData).forEach(crop => {
+                    suitabilityScores[crop] = 70; // Base score
+                });
+                
+                // Adjust scores based on soil type
+                if (soil === 'loamy') {
+                    suitabilityScores.wheat += 15;
+                    suitabilityScores.maize += 15;
+                    suitabilityScores.cotton += 10;
+                } else if (soil === 'clay') {
+                    suitabilityScores.rice += 15;
+                    suitabilityScores.sugarcane += 10;
+                } else if (soil === 'sandy') {
+                    suitabilityScores.cotton += 10;
+                    suitabilityScores.pulses += 10;
+                } else if (soil === 'silty') {
+                    suitabilityScores.wheat += 10;
+                    suitabilityScores.rice += 10;
+                    suitabilityScores.maize += 10;
+                }
+                
+                // Adjust scores based on season
+                if (season === 'kharif') {
+                    suitabilityScores.rice += 20;
+                    suitabilityScores.cotton += 15;
+                    suitabilityScores.maize += 10;
+                } else if (season === 'rabi') {
+                    suitabilityScores.wheat += 20;
+                    suitabilityScores.pulses += 15;
+                } else if (season === 'zaid') {
+                    suitabilityScores.maize += 15;
+                    suitabilityScores.pulses += 10;
+                } else if (season === 'year-round') {
+                    suitabilityScores.sugarcane += 20;
+                }
+                
+                // Adjust scores based on water availability
+                if (water === 'high') {
+                    suitabilityScores.rice += 20;
+                    suitabilityScores.sugarcane += 15;
+                } else if (water === 'medium') {
+                    suitabilityScores.wheat += 10;
+                    suitabilityScores.cotton += 10;
+                    suitabilityScores.maize += 10;
+                } else if (water === 'low') {
+                    suitabilityScores.pulses += 20;
+                    suitabilityScores.cotton += 5;
+                }
+                
+                // Adjust scores based on budget
+                if (budget === 'high') {
+                    suitabilityScores.sugarcane += 15;
+                    suitabilityScores.cotton += 15;
+                } else if (budget === 'medium') {
+                    suitabilityScores.wheat += 10;
+                    suitabilityScores.rice += 10;
+                    suitabilityScores.maize += 10;
+                } else if (budget === 'low') {
+                    suitabilityScores.pulses += 15;
+                    suitabilityScores.maize += 10;
+                }
+                
+                // Sort crops by suitability score
+                const sortedCrops = Object.keys(suitabilityScores).sort((a, b) => {
+                    return suitabilityScores[b] - suitabilityScores[a];
+                });
+                
+                // Return top 4 crops
+                return sortedCrops.slice(0, 4).map(crop => {
+                    return {
+                        ...cropData[crop],
+                        match: Math.min(95, suitabilityScores[crop])
+                    };
+                });
+            }
+            
+            // Display recommendations in UI
+            function displayRecommendations(recommendations) {
+                // Clear previous recommendations
+                cropRecommendations.innerHTML = '';
+                comparisonTableBody.innerHTML = '';
+                
+                // Add crop cards
+                recommendations.forEach(crop => {
+                    const cropCard = document.createElement('div');
+                    cropCard.className = 'crop-card';
+                    cropCard.innerHTML = `
+                        <img src="${crop.image}" alt="${crop.name}" class="crop-image">
+                        <div class="crop-content">
+                            <div class="crop-name">
+                                ${crop.name}
+                                <span class="match-percentage">${crop.match}%</span>
+                            </div>
+                            <p class="crop-description">${crop.description}</p>
+                            <div class="crop-details">
+                                <div class="crop-detail">
+                                    <i class="fas fa-thermometer-half"></i>
+                                    <span>${crop.details.temperature}</span>
+                                </div>
+                                <div class="crop-detail">
+                                    <i class="fas fa-tint"></i>
+                                    <span>${crop.details.rainfall}</span>
+                                </div>
+                                <div class="crop-detail">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>${crop.details.harvest}</span>
+                                </div>
+                            </div>
+                            <div class="crop-btn">View Details</div>
+                        </div>
+                    `;
+                    
+                    cropRecommendations.appendChild(cropCard);
+                    
+                    // Add comparison row
+                    const comparisonRow = document.createElement('tr');
+                    comparisonRow.innerHTML = `
+                        <td>${crop.name}</td>
+                        <td>${crop.yield}</td>
+                        <td>${crop.profit}</td>
+                        <td>${crop.water}</td>
+                        <td>${crop.period}</td>
+                    `;
+                    
+                    comparisonTableBody.appendChild(comparisonRow);
+                });
+            }
+            
+            // Action buttons
+            const actionButtons = document.querySelectorAll('.action-btn');
+            actionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const buttonText = this.textContent.trim();
+                    
+                    if (buttonText.includes('Download')) {
+                        alert('Download functionality would be implemented here. This would generate a PDF of the crop recommendations.');
+                    } else if (buttonText.includes('Share')) {
+                        alert('Share functionality would be implemented here. This would allow sharing the recommendations with other farmers or experts.');
+                    } else if (buttonText.includes('Print')) {
+                        alert('Print functionality would be implemented here. This would open a print dialog for the recommendations.');
+                    }
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                
+                if (window.scrollY > 100) {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.05)';
+                }
+            });
+        });
+    </script>
